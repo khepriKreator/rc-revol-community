@@ -6,7 +6,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -14,7 +15,11 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "perfectionist"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "perfectionist"
+  ],
   "rules": {
     "@typescript-eslint/prefer-enum-initializers": "error",
     "perfectionist/sort-enums": [
@@ -30,7 +35,11 @@
       {
         "type": "natural",
         "order": "asc",
-        "groups": ["multiline", "unknown", "shorthand"]
+        "groups": [
+          "multiline",
+          "unknown",
+          "shorthand"
+        ]
       }
     ],
     "perfectionist/sort-interfaces": "error",
@@ -49,11 +58,22 @@
         "order": "desc",
         "groups": [
           "type",
-          ["builtin", "external"],
+          [
+            "builtin",
+            "external"
+          ],
           "internal-type",
           "internal",
-          ["parent-type", "sibling-type", "index-type"],
-          ["parent", "sibling", "index"],
+          [
+            "parent-type",
+            "sibling-type",
+            "index-type"
+          ],
+          [
+            "parent",
+            "sibling",
+            "index"
+          ],
           "object",
           "unknown"
         ],

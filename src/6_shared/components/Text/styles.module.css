@@ -1,0 +1,17 @@
+.text {
+}
+
+.s {
+   font-size: 16px;
+    line-height: 24px;
+}
+
+.m {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.xl {
+    font-size: 40px;
+    line-height: 48px;
+}

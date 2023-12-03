@@ -10,8 +10,10 @@
     "preview": "vite preview",
     "lint:fix": "eslint --fix --ext .tsx,.ts src",
     "types-check": "tsc --project tsconfig.json --noEmit --noEmitHelpers --noErrorTruncation --strict",
-    "gen-api:game": "npx openapi --input https://rc-revo-game-prod.herokuapp.com/rc_revo/docs-json --output ./src/shared/api/generated/game -c axios",
-    "gen-api:auth": "npx openapi --input https://rc-revo-auth-stage.herokuapp.com/auth/docs-json --output ./src/shared/api/generated/auth -c axios"
+    "gen-api:game": "npx openapi --input https://rc-revo-game-prod.herokuapp.com/rc_revo/docs-json --output src/6_shared/api/generated/game -c axios",
+    "gen-api:auth": "npx openapi --input https://rc-revo-auth-stage.herokuapp.com/auth/docs-json --output src/6_shared/api/generated/auth -c axios",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
@@ -31,6 +33,14 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.3",
+    "@storybook/addon-interactions": "^7.6.3",
+    "@storybook/addon-links": "^7.6.3",
+    "@storybook/addon-onboarding": "^1.0.9",
+    "@storybook/blocks": "^7.6.3",
+    "@storybook/react": "^7.6.3",
+    "@storybook/react-vite": "^7.6.3",
+    "@storybook/test": "^7.6.3",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
@@ -42,8 +52,10 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
+    "storybook": "^7.6.3",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   },
