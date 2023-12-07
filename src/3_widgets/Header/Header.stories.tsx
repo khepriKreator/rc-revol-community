@@ -14,8 +14,6 @@ export const Component = () => {
     return (
         <>
             <Header
-                logo={''}
-                gameName={'RC Revolution Community'}
             />
         </>
     );

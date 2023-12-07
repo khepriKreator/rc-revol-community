@@ -15,6 +15,9 @@ export const Component = () => {
         <>
             <Text
                 children={'That text'}
+                color={'default'}
+                size={'S'}
+                weight={'default'}
             />
         </>
     );

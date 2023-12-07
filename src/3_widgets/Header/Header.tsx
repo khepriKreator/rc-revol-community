@@ -1,19 +1,20 @@
 import {Navbar} from "react-bootstrap";
 import {Nav} from "react-bootstrap";
-import {Cell} from '../../6_shared';
+import {Cell, Text} from '../../6_shared';
+import styles from './styles.module.css';
 
-export type HeaderProps = {
-    gameName: string;
-    logo: string;
-}
 
-export const Header = ({logo, gameName}: HeaderProps) => {
+export const Header = () => {
     return (
-        <Navbar>
+        <Navbar className={styles.header}>
             <Navbar.Brand>
                 <Cell
-                    image={logo}
-                    primaryText={gameName}
+                    primaryText={
+                        <Text color={'white'} size={'M'} weight={'bold'}>
+                            RC Revolution Community
+                        </Text>
+                }
+                    image={''}
                 />
             </Navbar.Brand>
             <Nav>

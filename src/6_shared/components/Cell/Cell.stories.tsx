@@ -15,7 +15,7 @@ export const Component = () => {
     return (
             <Cell
                 image={'../../assets/react.svg'}
-                primaryText={<Text>That Text</Text>}
+                primaryText={<Text size={'S'} weight={'bold'} color={'black'}>That Text</Text>}
             />
     );
 };
