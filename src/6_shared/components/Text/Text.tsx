@@ -4,12 +4,13 @@ import styles from './styles.module.css';
 
 export type TextProps = {
     children: React.ReactNode;
-    color: string;
-    size: string;
-    weight: string;
+    color?: string;
+    italic?: boolean;
+    size?: 'S' | 'M' | 'XL';
+    weight?: string;
 }
 
-export const Text = ({children, color='default', weight='default', size='S'}: TextProps) => {
+export const Text = ({children, color='default', weight='default', size='S', italic}: TextProps) => {
     const className = classNames(
         {
             [styles.s]: size === 'S',
@@ -20,7 +21,8 @@ export const Text = ({children, color='default', weight='default', size='S'}: Te
             [styles.gray]: color === 'gray',
             [styles.blue]: color === 'blue',
             [styles.normal]: weight === 'default',
-            [styles.bold]: weight === 'bold'
+            [styles.bold]: weight === 'bold',
+            [styles.italic]: italic === true,
         }
     );
 

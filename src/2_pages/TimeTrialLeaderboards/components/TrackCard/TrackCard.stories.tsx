@@ -1,10 +1,10 @@
 /* eslint i18next/no-literal-string: "off" */
 import {Meta} from '@storybook/react';
-import {Header} from './Header';
+import {TrackCard, TrackCardProps} from './TrackCard';
 
-const meta: Meta = {
-    component: Header,
-    title: 'Header',
+const meta: Meta<TrackCardProps> = {
+    component: TrackCard,
+    title: 'TrackCard',
 };
 
 export default meta;
@@ -13,7 +13,10 @@ export default meta;
 export const Component = () => {
     return (
         <>
-            <Header
+            <TrackCard
+                image={''}
+                trackName={'track name'}
+                tags={null}
             />
         </>
     );

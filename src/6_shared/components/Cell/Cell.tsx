@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 export type CellProps = {
-    image: string;
+    image?: string;
     primaryText?: React.ReactNode;
     secondaryText?: React.ReactNode;
 }

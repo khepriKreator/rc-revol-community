@@ -1,0 +1,72 @@
+/* eslint i18next/no-literal-string: "off" */
+import {Meta} from '@storybook/react';
+import {GlobalLeaderBoard, GlobalLeaderBoardProps} from './GlobalLeaderBoard';
+import {Users} from "../../../../6_shared/api/types";
+
+const meta: Meta<GlobalLeaderBoardProps> = {
+    component: GlobalLeaderBoard,
+    title: 'pages/HomePage/component/GlobalLeaderBoard',
+};
+
+export default meta;
+
+
+export const Component = () => {
+    const users: Users = [
+        {
+            accountAvatar: 'string',
+            accountId: 0,
+            accountUsername: 'string',
+            bestLapTime: 0,
+            createdAt: Date.now(),
+            id: 0,
+            isDemo: true,
+            number: 0,
+            position: 'string',
+            time: 0,
+            trackPublicId: 'string',
+            updatedAt: Date.now(),
+        },
+        {
+            accountAvatar: 'string',
+            accountId: 0,
+            accountUsername: 'string',
+            bestLapTime: 0,
+            createdAt: Date.now(),
+            id: 0,
+            isDemo: true,
+            number: 0,
+            position: 'string',
+            time: 0,
+            trackPublicId: 'string',
+            updatedAt: Date.now(),
+        },
+        {
+            accountAvatar: 'string',
+            accountId: 0,
+            accountUsername: 'string',
+            bestLapTime: 0,
+            createdAt: Date.now(),
+            id: 0,
+            isDemo: true,
+            number: 0,
+            position: 'string',
+            time: 0,
+            trackPublicId: 'string',
+            updatedAt: Date.now(),
+        }
+    ]
+    return (
+        <>
+            <GlobalLeaderBoard
+                users={users}
+            />
+        </>
+    );
+};
+
+Component.parameters = {
+    msw: {
+        handlers: []
+    },
+}
