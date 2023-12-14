@@ -7,7 +7,11 @@ export type TimeTrialLeaderboardsProps = {
     trackCardList: Tracks | null;
 }
 
+// переименовать в список треков
 export const TimeTrialLeaderboards = ({trackCardList}: TimeTrialLeaderboardsProps) => {
+
+
+    // TracksService.trackControllerPaginate
     return (
         <div>
             <Text size={'XL'} weight={'bold'}>

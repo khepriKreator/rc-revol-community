@@ -34,12 +34,18 @@ export type Steam = {
     steamId: string,
 };
 
+// "1900 mart 12"
+type DateType = string;
+
+type ID = number;
+type MayBe<T> = T | null;
+
 export type Preview = {
-    createdAt: Date | string,
-    id: number,
+    createdAt: DateType,
+    id: MayBe<ID>,
     s3Key: string,
     s3Location: string,
-    updatedAt: Date | string,
+    updatedAt: DateType,
 };
 
 export type Category = {

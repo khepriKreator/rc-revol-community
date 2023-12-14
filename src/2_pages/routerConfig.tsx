@@ -5,7 +5,6 @@ import {
 import {HomePage, TimeTrialLeaderboards} from "./index.ts";
 import {Layout} from "../3_widgets/Layout";
 
-
 export const routerConfig = createBrowserRouter([
     {
         path: '/',
@@ -26,3 +25,11 @@ export const routerConfig = createBrowserRouter([
         ]
     }
 ])*/
+/**
+ * 1. /home -
+ * 2. /faq
+ * 3. /tracks
+ * 4. /tracks/:trackId
+ * 5. /account/:accountId
+ * */
+
