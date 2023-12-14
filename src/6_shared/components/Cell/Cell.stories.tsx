@@ -5,7 +5,7 @@ import {Text} from "../Text";
 
 const meta: Meta<CellProps> = {
     component: Cell,
-    title: 'Cell',
+    title: 'shared/components/Cell',
 };
 
 export default meta;

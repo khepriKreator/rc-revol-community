@@ -4,7 +4,7 @@ import {TrackCard, TrackCardProps} from './TrackCard';
 
 const meta: Meta<TrackCardProps> = {
     component: TrackCard,
-    title: 'TrackCard',
+    title: 'pages/TimeTrialLeaderboards/components/TrackCard',
 };
 
 export default meta;

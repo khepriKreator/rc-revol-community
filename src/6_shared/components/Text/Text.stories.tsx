@@ -4,7 +4,7 @@ import {Text, TextProps} from './Text';
 
 const meta: Meta<TextProps> = {
     component: Text,
-    title: 'Text',
+    title: 'shared/components/Text',
 };
 
 export default meta;

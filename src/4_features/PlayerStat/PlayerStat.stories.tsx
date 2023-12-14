@@ -1,10 +1,10 @@
 /* eslint i18next/no-literal-string: "off" */
 import {Meta} from '@storybook/react';
-import {Header} from './Header';
+import {PlayerStat, PlayerStatProps} from './PlayerStat.tsx';
 
-const meta: Meta = {
-    component: Header,
-    title: 'widgets/Header',
+const meta: Meta<PlayerStatProps> = {
+    component: PlayerStat,
+    title: 'features/PlayerStat',
 };
 
 export default meta;
@@ -13,8 +13,7 @@ export default meta;
 export const Component = () => {
     return (
         <>
-            <Header
-            />
+            <PlayerStat tracks={null} user={null}/>
         </>
     );
 };

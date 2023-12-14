@@ -1,10 +1,9 @@
 /* eslint i18next/no-literal-string: "off" */
-import {Meta} from '@storybook/react';
-import {Header} from './Header';
+import {Layout} from './Layout';
 
-const meta: Meta = {
-    component: Header,
-    title: 'widgets/Header',
+const meta = {
+    component: Layout,
+    title: 'widgets/Layout',
 };
 
 export default meta;
@@ -13,8 +12,7 @@ export default meta;
 export const Component = () => {
     return (
         <>
-            <Header
-            />
+            <Layout/>
         </>
     );
 };

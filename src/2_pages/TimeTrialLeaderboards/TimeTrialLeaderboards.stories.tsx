@@ -4,7 +4,7 @@ import {TimeTrialLeaderboards, TimeTrialLeaderboardsProps} from './TimeTrialLead
 
 const meta: Meta<TimeTrialLeaderboardsProps> = {
     component: TimeTrialLeaderboards,
-    title: 'TimeTrialLeaderboards',
+    title: 'pages/TimeTrialLeaderboards',
 };
 
 export default meta;
