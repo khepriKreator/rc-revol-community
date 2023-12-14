@@ -28,6 +28,7 @@ export type { TrackTagDto } from './models/TrackTagDto';
 export { TrackType } from './models/TrackType';
 export type { UpdateTrackDto } from './models/UpdateTrackDto';
 
+export { AccountService } from './services/AccountService';
 export { ImagesService } from './services/ImagesService';
 export { ReportsService } from './services/ReportsService';
 export { ReportsOptionsService } from './services/ReportsOptionsService';

@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint:fix": "eslint --fix --ext .tsx,.ts src",
     "types-check": "tsc --project tsconfig.json --noEmit --noEmitHelpers --noErrorTruncation --strict",
-    "gen-api:game": "npx openapi --input https://rc-revo-game-prod.herokuapp.com/rc_revo/docs-json --output src/6_shared/api/generated/game -c axios",
+    "gen-api:game": "npx openapi --input https://rc-revo-game-stage.herokuapp.com/rc_revo/docs-json --output src/6_shared/api/generated/game -c axios",
     "gen-api:auth": "npx openapi --input https://rc-revo-auth-stage.herokuapp.com/auth/docs-json --output src/6_shared/api/generated/auth -c axios",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

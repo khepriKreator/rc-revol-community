@@ -5,7 +5,7 @@ import {Users} from "../../6_shared/api/types";
 
 const meta: Meta<TrackStatProps> = {
     component: TrackStat,
-    title: 'features/PlayerStat',
+    title: 'features/TrackStat',
 };
 
 export default meta;

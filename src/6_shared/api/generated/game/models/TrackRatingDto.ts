@@ -29,6 +29,10 @@ export type TrackRatingDto = {
      */
     position: string;
     /**
+     * Количество очков позиции
+     */
+    points: number;
+    /**
      * Количество заездов
      */
     number: number;

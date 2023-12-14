@@ -3,15 +3,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { TrackRatingDto } from './TrackRatingDto';
-
 export type PostTrackRatingResultDto = {
     /**
      * Предыдущий результат заезда, вернется если новый результат лучше предыдущего
      */
-    prevResult: TrackRatingDto | null;
+    prevResult: Record<string, any> | null;
     /**
      * Новый результат заезда, вернется всегда и при создании и при обновлении
      */
-    nextResult: TrackRatingDto | null;
+    nextResult: Record<string, any> | null;
 };

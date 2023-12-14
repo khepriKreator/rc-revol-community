@@ -79,4 +79,104 @@ requestBody: PostTrackRatingDto,
         });
     }
 
+    /**
+     * Получить статистику игрока по трассам
+     * @param accountId ID аккаунта
+     * @param page 
+     * @param limit 
+     * @param isDemo Показывать данные только для demo игры
+     * @returns TrackRatingDto Результаты трека
+     * @throws ApiError
+     */
+    public static statsControllerAccountLeaderBoard(
+accountId: number,
+page: number = 1,
+limit: number = 10,
+isDemo: boolean = false,
+): CancelablePromise<Array<TrackRatingDto>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/stats/account-leaderboard/{accountId}',
+            path: {
+                'accountId': accountId,
+            },
+            query: {
+                'page': page,
+                'limit': limit,
+                'isDemo': isDemo,
+            },
+            errors: {
+                400: `Некорректный запрос`,
+                401: `Не авторизированный запрос`,
+            },
+        });
+    }
+
+    /**
+     * Получить статистику трассы по игрокам
+     * @param trackId ID трека
+     * @param page 
+     * @param limit 
+     * @param isDemo Показывать данные только для demo игры
+     * @param search Поисковая строка по аккаунтам
+     * @returns TrackRatingDto Результаты трека по аккаунтам
+     * @throws ApiError
+     */
+    public static statsControllerTrackLeaderBoard(
+trackId: string,
+page: number = 1,
+limit: number = 10,
+isDemo: boolean = false,
+search?: string,
+): CancelablePromise<Array<TrackRatingDto>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/stats/leaderboard/{trackId}',
+            path: {
+                'trackId': trackId,
+            },
+            query: {
+                'page': page,
+                'limit': limit,
+                'isDemo': isDemo,
+                'search': search,
+            },
+            errors: {
+                400: `Некорректный запрос`,
+                401: `Не авторизированный запрос`,
+            },
+        });
+    }
+
+    /**
+     * Получить глобальную статистику
+     * @param page 
+     * @param limit 
+     * @param isDemo Показывать данные только для demo игры
+     * @param search Поиск по аккаунтам (username)
+     * @returns TrackRatingDto Результаты трека по аккаунтам
+     * @throws ApiError
+     */
+    public static statsControllerGlobalLeaderBoard(
+page: number = 1,
+limit: number = 10,
+isDemo: boolean = false,
+search?: string,
+): CancelablePromise<Array<TrackRatingDto>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/stats/leaderboard',
+            query: {
+                'page': page,
+                'limit': limit,
+                'isDemo': isDemo,
+                'search': search,
+            },
+            errors: {
+                400: `Некорректный запрос`,
+                401: `Не авторизированный запрос`,
+            },
+        });
+    }
+
 }
