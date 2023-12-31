@@ -1,30 +1,42 @@
+import Pagination from "react-bootstrap/Pagination";
+import {useQuery} from "@tanstack/react-query";
 import Button from 'react-bootstrap/Button';
 import {InputGroup} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
+import {useState} from 'react';
+import {TrackRatingsService} from "../../6_shared/api/generated/game";
 import {GlobalLeaderBoard} from "./components/GlobalLeaderBoard";
-import {Users} from "../../6_shared/api/types";
 import styles from './styles.module.css'
 import {Text} from '../../6_shared';
-import {TrackRatingsService} from "../../6_shared/api/generated/game";
-import {useQuery} from "@tanstack/react-query";
 
-export type HomePageProps = {
-    users: Users;
-}
+export const HomePage = () => {
+    const [qKeys, setQKeys] = useState({
+        search: '',
+        page: 1,
+    })
+    const [searchField, setSearchField] = useState('');
 
-export const HomePage = ({users}: HomePageProps) => {
-    // стейт для запроса
-    // useState({
-    //     search: '',
-    //     page: 1,
-    // })
+    const {statsControllerGlobalLeaderBoard} = TrackRatingsService;
 
-    // поле ввода поиска
-    // useState('')
+    const {data, isSuccess, isError} = useQuery({
+        queryKey: [qKeys.search, qKeys.page],
+        queryFn: () => statsControllerGlobalLeaderBoard(qKeys.page, 10, false, qKeys.search)
+    })
+    if (isError) {
+        console.log(null)
+        return null;
+    }
+    if (isSuccess) {
+        console.log(data)
+    }
 
 
-    // не забыть пагинацию обнулить
-    // onApplySearch =() =>
+    const onApplySearch = () => {
+        setQKeys({
+            search: searchField,
+            page: 1,
+        })
+    }
 
     /**
      * получить глобальный лидерборд
@@ -49,7 +61,7 @@ export const HomePage = ({users}: HomePageProps) => {
                         </Button>
                     </InputGroup>
                 </Form>
-            <GlobalLeaderBoard users={users}/>
+            <GlobalLeaderBoard users={data}/>
         </div>
     );
 };

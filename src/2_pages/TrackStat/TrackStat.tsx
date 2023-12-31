@@ -2,17 +2,11 @@ import Button from "react-bootstrap/Button";
 import {InputGroup} from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-import {Users} from "../../6_shared/api/types";
 import {Cell, Text} from "../../6_shared";
 import styles from './styles.module.css';
 import {TracksService} from "../../6_shared/api/generated/game";
 
-export type TrackStatProps = {
-    trackTitle: string;
-    users: Users;
-}
-
-export const TrackStat = ({trackTitle , users}: TrackStatProps) => {
+export const TrackStat = () => {
 
  // TrackRatingsService.statsControllerTrackLeaderBoard
  // TracksService.trackControllerFind
@@ -20,7 +14,7 @@ export const TrackStat = ({trackTitle , users}: TrackStatProps) => {
     return (
         <div className={styles.display}>
             <Text size={'XL'} weight={'bold'}>
-                {trackTitle}
+                ss
             </Text>
 
             <Form className={styles.form}>

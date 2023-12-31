@@ -2,16 +2,10 @@ import Button from "react-bootstrap/Button";
 import {InputGroup} from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
-import {Tracks, User} from "../../6_shared/api/types";
 import {Cell, Text} from "../../6_shared";
 import styles from './styles.module.css';
 
-export type PlayerStatProps = {
-    tracks: Tracks | null;
-    user: User | null;
-}
-
-export const PlayerStat = ({tracks, user}: PlayerStatProps) => {
+export const PlayerStat = () => {
 
     // AccountService.accountControllerFindOne
     // TrackRatingsService.statsControllerAccountLeaderBoard

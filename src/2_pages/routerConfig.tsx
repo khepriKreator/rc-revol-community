@@ -1,9 +1,9 @@
-/*
 import {
     createBrowserRouter,
 } from "react-router-dom";
-import {HomePage, TimeTrialLeaderboards} from "./index.ts";
+import {TrackStat, HomePage, Tracks} from "./index.ts";
 import {Layout} from "../3_widgets/Layout";
+import {PlayerStat} from "./PlayerStat";
 
 export const routerConfig = createBrowserRouter([
     {
@@ -15,16 +15,22 @@ export const routerConfig = createBrowserRouter([
                 index: true
             },
             {
-                path: '',
-                element: <TimeTrialLeaderboards/>,
+                path: 'tracks',
+                element: <Tracks/>,
+                children: [
+                    {
+                        element: <TrackStat/>,
+                        path: 'tracks/:trackId',
+                    }
+                ]
             },
             {
-                element: ,
-                path: ''
+                element: <PlayerStat/>,
+                path: 'player/:playerId'
             },
         ]
     }
-])*/
+])
 /**
  * 1. /home -
  * 2. /faq

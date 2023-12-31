@@ -3,6 +3,27 @@
     padding: 8px 12px;
 }
 
-.nav {
-    color: white;
+.title {
+    color: rgba(255, 255, 255, 1);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.title:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.inactiveLink {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.inactiveLink:hover {
+    color: rgba(255, 255, 255, 0.80);
+}
+
+.activeLink {
+    color: rgb(255, 255, 255);
+}
+.activeLink:hover {
+    color: rgba(255, 255, 255, 0.80);
 }

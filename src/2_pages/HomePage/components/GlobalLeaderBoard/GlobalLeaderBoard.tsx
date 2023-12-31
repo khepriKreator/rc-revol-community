@@ -1,12 +1,15 @@
 import Table from 'react-bootstrap/Table';
-import {Users} from '../../../../6_shared/api/types';
-import {Cell, Text} from '../../../../6_shared'
+import {TrackRatingDto} from "../../../../6_shared/api/generated/game";
+import {Cell, Text} from '../../../../6_shared';
 
 export type GlobalLeaderBoardProps = {
-    users: Users;
+    users: TrackRatingDto[] | undefined;
 }
 
 export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
+    if (users === undefined) {
+        return null;
+    }
     return (
         <Table borderless striped>
             <thead>
@@ -23,7 +26,7 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                 </tr>
             </thead>
             <tbody>
-                {users.map((user, index) => {
+                {users?.map((user, index) => {
                     return (
                         <tr key={index}>
                             <td>
@@ -37,6 +40,7 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                                         </Text>
                                     }
                                     image={user.accountAvatar}
+                                    secondaryText={null}
                                 />
                             </td>
                             <td>

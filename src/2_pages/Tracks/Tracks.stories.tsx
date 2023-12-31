@@ -1,19 +1,21 @@
 /* eslint i18next/no-literal-string: "off" */
-import {HomePage} from './HomePage';
+import {Meta} from '@storybook/react';
 
-const meta = {
-    component: HomePage,
-    title: 'pages/HomePage',
+import {Tracks} from "./Tracks.tsx";
+
+const meta: Meta = {
+    component: Tracks,
+    title: 'pages/Tracks',
 };
 
 export default meta;
 
 
 export const Component = () => {
-
     return (
         <>
-            <HomePage/>
+            <Tracks
+            />
         </>
     );
 };

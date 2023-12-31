@@ -4,15 +4,15 @@ import React from 'react';
 import styles from './styles.module.css';
 
 export type CellProps = {
-    image?: string;
-    primaryText?: React.ReactNode;
-    secondaryText?: React.ReactNode;
+    image: string | null;
+    primaryText: React.ReactNode | null;
+    secondaryText: React.ReactNode | null;
 }
 
 export const Cell = ({image, primaryText, secondaryText}: CellProps) => {
     return (
         <Stack className={styles.stack} direction={"horizontal"}>
-            <Image src={image} rounded/>
+            <Image src={image !== null ? image : ''} rounded/>
             <Stack direction={'vertical'}>
                 <div>
                     {primaryText && primaryText}
