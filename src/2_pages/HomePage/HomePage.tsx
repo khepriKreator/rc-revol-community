@@ -1,10 +1,10 @@
-import Pagination from "react-bootstrap/Pagination";
 import {useQuery} from "@tanstack/react-query";
 import Button from 'react-bootstrap/Button';
 import {InputGroup} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import {useState} from 'react';
 import {TrackRatingsService} from "../../6_shared/api/generated/game";
+import {CustomPagination} from "../../6_shared/components/Pagination";
 import {GlobalLeaderBoard} from "./components/GlobalLeaderBoard";
 import styles from './styles.module.css'
 import {Text} from '../../6_shared';
@@ -16,20 +16,29 @@ export const HomePage = () => {
     })
     const [searchField, setSearchField] = useState('');
 
-    const {statsControllerGlobalLeaderBoard} = TrackRatingsService;
-
-    const {data, isSuccess, isError} = useQuery({
+    const {data} = useQuery({
         queryKey: [qKeys.search, qKeys.page],
-        queryFn: () => statsControllerGlobalLeaderBoard(qKeys.page, 10, false, qKeys.search)
+        queryFn: () => TrackRatingsService.statsControllerGetGlobalLeaderBoard(qKeys.page, 10, false, qKeys.search)
     })
-    if (isError) {
-        console.log(null)
+    if (!data) {
         return null;
     }
-    if (isSuccess) {
-        console.log(data)
-    }
-
+    const onClFirst = () => setQKeys({
+        search: '',
+        page: 1
+    })
+    const onClLast = () => setQKeys({
+        search: '',
+        page: data.length
+    })
+    const onClPrev = () => setQKeys({
+        search: '',
+        page: qKeys.page > 1 ? qKeys.page - 1 : 1
+    })
+    const onClNext = () => setQKeys({
+        search: '',
+        page: qKeys.page < data.length ? qKeys.page + 1 : qKeys.page
+    })
 
     const onApplySearch = () => {
         setQKeys({
@@ -37,13 +46,6 @@ export const HomePage = () => {
             page: 1,
         })
     }
-
-    /**
-     * получить глобальный лидерборд
-     * TrackRatingsService.statsControllerGlobalLeaderBoard()
-     * */
-
-    // useQuery(['', state], () =>)
 
     return (
         <div className={styles.homePage}>
@@ -53,15 +55,20 @@ export const HomePage = () => {
 
                 <Form className={styles.form}>
                     <InputGroup>
-                        <Form.Control>
-
-                        </Form.Control>
-                        <Button>
+                        <Form.Control onChange={(event) => setSearchField(event.target.value)}/>
+                        <Button onClick={() => onApplySearch()}>
                             Filter
                         </Button>
                     </InputGroup>
                 </Form>
             <GlobalLeaderBoard users={data}/>
+            <CustomPagination
+                onClFirst={onClFirst} 
+                onClLast={onClLast} 
+                onClNext={onClNext} 
+                onClPrev={onClPrev} 
+                page={qKeys.page} 
+                totalPages={data.length}/>
         </div>
     );
 };

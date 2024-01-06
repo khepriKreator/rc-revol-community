@@ -14,6 +14,7 @@ export const Header = () => {
                         <NavLink className={styles.title} to={'/'}>RC Revolution Community</NavLink>
                     }
                     image={''}
+                    secondaryText={null}
                 />
             </Navbar.Brand>
             <Nav>

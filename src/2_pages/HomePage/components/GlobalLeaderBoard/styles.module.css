@@ -1,4 +1,12 @@
 .header {
-    background-color: rgba(33, 37, 41, 1);
-    color: rgba(255, 255, 255, 1);
+    text-align: center;
+}
+
+.position {
+    width: 184px;
+    text-align: center;
+}
+
+.score {
+    text-align: center;
 }

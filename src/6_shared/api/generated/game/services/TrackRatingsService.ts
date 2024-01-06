@@ -211,7 +211,7 @@ page: number = 1,
 limit: number = 10,
 isDemo: boolean = false,
 search?: string,
-): CancelablePromise<PaginationLeaderBoardDto> {
+s): CancelablePromise<TrackRatingDto[]> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/stats/public/leaderboard',
@@ -226,5 +226,4 @@ search?: string,
             },
         });
     }
-
 }

@@ -1,6 +1,7 @@
 import Table from 'react-bootstrap/Table';
 import {TrackRatingDto} from "../../../../6_shared/api/generated/game";
 import {Cell, Text} from '../../../../6_shared';
+import styles from './styles.module.css'
 
 export type GlobalLeaderBoardProps = {
     users: TrackRatingDto[] | undefined;
@@ -10,10 +11,20 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
     if (users === undefined) {
         return null;
     }
+    const sortedUsers = users.sort((a, b) => {
+        if (Number(a.position) > Number(b.position)) {
+            return 1
+        } if (Number(a.position) < Number(b.position)) {
+            return -1
+        } else {
+            return 0
+        }
+    })
+
     return (
         <Table borderless striped>
             <thead>
-                <tr>
+                <tr className={styles.header}>
                     <th>
                         Position
                     </th>
@@ -26,10 +37,10 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                 </tr>
             </thead>
             <tbody>
-                {users?.map((user, index) => {
+                {sortedUsers?.map((user, index) => {
                     return (
                         <tr key={index}>
-                            <td>
+                            <td className={styles.position}>
                                 {user.position}
                             </td>
                             <td>
@@ -43,7 +54,7 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                                     secondaryText={null}
                                 />
                             </td>
-                            <td>
+                            <td className={styles.score}>
                                 {user.number}
                             </td>
                         </tr>

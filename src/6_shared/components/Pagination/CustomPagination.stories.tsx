@@ -13,7 +13,14 @@ export default meta;
 export const Component = () => {
     return (
         <>
-            <CustomPagination page={1} onClick={() => console.log('click')}/>
+            <CustomPagination
+                page={1}
+                totalPages={10}
+                onClLast={() => console.log('click')}
+                onClFirst={() => console.log('click')}
+                onClNext={() => console.log('click')}
+                onClPrev={() => console.log('click')}
+            />
         </>
     );
 };

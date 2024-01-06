@@ -14,8 +14,9 @@ export default meta;
 export const Component = () => {
     return (
             <Cell
+                secondaryText={<Text size={'S'} color={'black'}>That Secondary Text</Text>}
                 image={'../../assets/react.svg'}
-                primaryText={<Text size={'S'} weight={'bold'} color={'black'}>That Text</Text>}
+                primaryText={<Text size={'M'} weight={'bold'} color={'black'}>That Primary Text</Text>}
             />
     );
 };
