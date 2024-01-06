@@ -31,7 +31,11 @@ export type TrackRatingDto = {
     /**
      * Количество очков позиции
      */
-    points: number;
+    points?: number;
+    /**
+     * Количество очков трюков заездов
+     */
+    trick_points: number | null;
     /**
      * Количество заездов
      */
@@ -39,11 +43,11 @@ export type TrackRatingDto = {
     /**
      * Лучшее время круга
      */
-    bestLapTime: number;
+    bestLapTime: number | null;
     /**
      * Лучшее время заезда
      */
-    time: number;
+    time: number | null;
     /**
      * Дата создания
      */
