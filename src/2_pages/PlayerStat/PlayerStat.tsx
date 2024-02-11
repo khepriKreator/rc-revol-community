@@ -1,93 +1,94 @@
-import Button from "react-bootstrap/Button";
-import {InputGroup} from "react-bootstrap";
+import {useParams, Link} from 'react-router-dom'
+import {useQuery} from "@tanstack/react-query";
 import Table from "react-bootstrap/Table";
-import Form from "react-bootstrap/Form";
+import {format} from 'date-fns';
+import {useState} from "react";
+import {TrackRatingsService, AccountService} from "../../6_shared/api/generated/game";
 import {Cell, Text} from "../../6_shared";
 import styles from './styles.module.css';
 
 export const PlayerStat = () => {
+    const {accountId} = useParams();
+    const {data: user} = useQuery({
+        queryKey: [],
+        queryFn: () => AccountService.accountControllerFindOne(Number(accountId))
+    })
+    const [page, setPage] = useState(1);
+    const {data} = useQuery({
+        queryKey: [page],
+        queryFn: () => TrackRatingsService.statsControllerGetAccountLeaderBoard(Number(accountId), page, 10, false)
+    })
+    if (!data) {
+        return null;
+    }
+    if (!user) {
+        return null;
+    }
+    const {items: tracks} = data;
 
-    // AccountService.accountControllerFindOne
-    // TrackRatingsService.statsControllerAccountLeaderBoard
     return (
         <div className={styles.display}>
-            <Text size={'XL'} weight={'bold'}>
-                {user?.accountUsername}
-            </Text>
-
-            <Form className={styles.form}>
-                <InputGroup>
-                    <Form.Control>
-
-                    </Form.Control>
-                    <Button>
-                        Filter
-                    </Button>
-                </InputGroup>
-            </Form>
+            <Cell
+                primaryText={<Text size={'XL'} weight={'bold'}>
+                    {user?.username}
+                </Text>}
+                image={user.avatar}
+                secondaryText={null}
+            />
             <Table borderless striped>
                 <thead>
                 <tr>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
                             Track
-                        </Text>
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
                             Position
-                        </Text>
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
                             Best Lap Time
-                        </Text>
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
                             Time
-                        </Text>
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
                             Date
-                        </Text>
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
                             Number of Tries
-                        </Text>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                    {tracks?.map((track, index) => {
+                    {tracks.map((track, index) => {
+                        const date = Date.parse(track.createdAt)
                         return (
                             <tr key={index}>
                                 <td>
                                     <Cell
-                                        primaryText={
-                                            <Text size={'S'} >
-                                                {track.title}
+                                        primaryText={<Link to={`/tracks/${track.trackPublicId}`}>
+                                            <Text isLink={true} size={'S'}>
+                                                {track.trackPublicId}
                                             </Text>
+                                        </Link>
                                         }
-                                        image={'image'}
+                                        image={null}
+                                        secondaryText={null}
                                     />
                                 </td>
                                 <td>
-                                    {user?.position}
+                                    {track.position}
                                 </td>
                                 <td>
-                                    {user?.bestLapTime}
+                                    {track.bestLapTime}
                                 </td>
                                 <td>
-                                    {user?.time}
+                                    {track.time}
                                 </td>
                                 <td>
-                                    date
+                                    {format(date, 'yyyy-MM-dd HH:mm')}
                                 </td>
                                 <td>
-                                    number of tries
+                                    {track.number}
                                 </td>
                             </tr>
                         )

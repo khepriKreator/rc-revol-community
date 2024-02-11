@@ -9,24 +9,20 @@ import styles from './styles.module.css'
 import {Text} from '../../6_shared';
 
 export const HomePage = () => {
-    const [qKeys, setQKeys] = useState({
-        search: '',
-        page: 1,
-    })
+    const [search, setSearch] = useState('')
+    const [page, setPage] = useState(1);
     const [searchField, setSearchField] = useState('');
 
     const {data} = useQuery({
-        queryKey: [qKeys.search, qKeys.page],
-        queryFn: () => TrackRatingsService.statsControllerGetGlobalLeaderBoard(qKeys.page, 10, false, qKeys.search)
+        queryKey: [search, page],
+        queryFn: () => TrackRatingsService.statsControllerGetGlobalLeaderBoard(page, 10, false, search)
     })
     if (!data) {
         return null;
     }
     const onApplySearch = () => {
-        setQKeys({
-            search: searchField,
-            page: 1,
-        })
+        setSearch(searchField)
+        setPage(1);
     }
     console.log(data);
 

@@ -12,7 +12,7 @@ export type CellProps = {
 export const Cell = ({image, primaryText, secondaryText}: CellProps) => {
     return (
         <Stack className={styles.stack} direction={"horizontal"}>
-            <Image className={styles.img} src={image !== null ? image : ''} rounded/>
+            {image && <Image className={styles.img} src={image !== null ? image : ''} rounded/>}
             <Stack className={styles.textStack} direction={'vertical'}>
                 <div>
                     {primaryText && primaryText}

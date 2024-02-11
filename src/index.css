@@ -63,3 +63,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+table th {
+  color: white !important;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  background-color: rgba(33, 37, 41, 1) !important;
+}
+
+table tr {
+  text-align: center;
+  vertical-align: middle;
+}

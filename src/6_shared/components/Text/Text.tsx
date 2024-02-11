@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 export type TextProps = {
     children: React.ReactNode;
-    color?: string;
+    color?: 'default' | 'white' | 'gray' | 'blue';
     isLink?: boolean;
     italic?: boolean;
     size?: 'S' | 'M' | 'XL';

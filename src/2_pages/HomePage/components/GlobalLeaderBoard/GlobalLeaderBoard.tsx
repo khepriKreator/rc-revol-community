@@ -16,15 +16,15 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
     return (
         <Table borderless striped>
             <thead>
-                <tr className={styles.header}>
+                <tr>
                     <th>
-                        Position
+                            Position
                     </th>
                     <th>
-                        Player
+                            Player
                     </th>
                     <th>
-                        Points
+                            Points
                     </th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                 {users?.map((user, index) => {
                     return (
                         <tr key={index}>
-                            <td className={styles.position}>
+                            <td>
                                 {user.position}
                             </td>
                             <td>
@@ -48,7 +48,7 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                                     secondaryText={null}
                                 />
                             </td>
-                            <td className={styles.score}>
+                            <td>
                                 {user.number}
                             </td>
                         </tr>
