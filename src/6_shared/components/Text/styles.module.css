@@ -1,3 +1,7 @@
+.text {
+    width: fit-content;
+}
+
 .s {
    font-size: 16px;
     line-height: 24px;
@@ -39,4 +43,9 @@
 
 .italic {
     font-style: italic;
+}
+
+.link {
+    color: rgba(24, 119, 242, 1);
+    border-bottom: 1px solid rgba(24, 119, 242, 1);
 }

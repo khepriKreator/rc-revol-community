@@ -4,7 +4,6 @@ import {InputGroup} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import {useState} from 'react';
 import {TrackRatingsService} from "../../6_shared/api/generated/game";
-import {CustomPagination} from "../../6_shared/components/Pagination";
 import {GlobalLeaderBoard} from "./components/GlobalLeaderBoard";
 import styles from './styles.module.css'
 import {Text} from '../../6_shared';
@@ -23,29 +22,13 @@ export const HomePage = () => {
     if (!data) {
         return null;
     }
-    const onClFirst = () => setQKeys({
-        search: '',
-        page: 1
-    })
-    const onClLast = () => setQKeys({
-        search: '',
-        page: data.length
-    })
-    const onClPrev = () => setQKeys({
-        search: '',
-        page: qKeys.page > 1 ? qKeys.page - 1 : 1
-    })
-    const onClNext = () => setQKeys({
-        search: '',
-        page: qKeys.page < data.length ? qKeys.page + 1 : qKeys.page
-    })
-
     const onApplySearch = () => {
         setQKeys({
             search: searchField,
             page: 1,
         })
     }
+    console.log(data);
 
     return (
         <div className={styles.homePage}>
@@ -61,14 +44,7 @@ export const HomePage = () => {
                         </Button>
                     </InputGroup>
                 </Form>
-            <GlobalLeaderBoard users={data}/>
-            <CustomPagination
-                onClFirst={onClFirst} 
-                onClLast={onClLast} 
-                onClNext={onClNext} 
-                onClPrev={onClPrev} 
-                page={qKeys.page} 
-                totalPages={data.length}/>
+            <GlobalLeaderBoard users={data?.items}/>
         </div>
     );
 };

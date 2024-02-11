@@ -18,6 +18,7 @@ export const Component = () => {
                 color={'default'}
                 size={'S'}
                 weight={'default'}
+                isLink={false}
             />
         </>
     );

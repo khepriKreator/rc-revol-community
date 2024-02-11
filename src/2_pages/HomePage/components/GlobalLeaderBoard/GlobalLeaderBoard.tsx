@@ -1,4 +1,5 @@
 import Table from 'react-bootstrap/Table';
+import {Link} from 'react-router-dom'
 import {TrackRatingDto} from "../../../../6_shared/api/generated/game";
 import {Cell, Text} from '../../../../6_shared';
 import styles from './styles.module.css'
@@ -11,15 +12,6 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
     if (users === undefined) {
         return null;
     }
-    const sortedUsers = users.sort((a, b) => {
-        if (Number(a.position) > Number(b.position)) {
-            return 1
-        } if (Number(a.position) < Number(b.position)) {
-            return -1
-        } else {
-            return 0
-        }
-    })
 
     return (
         <Table borderless striped>
@@ -37,7 +29,7 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                 </tr>
             </thead>
             <tbody>
-                {sortedUsers?.map((user, index) => {
+                {users?.map((user, index) => {
                     return (
                         <tr key={index}>
                             <td className={styles.position}>
@@ -46,9 +38,11 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                             <td>
                                 <Cell
                                     primaryText={
-                                        <Text size={'S'} >
+                                    <Link to={`/account/${user.accountId}`}>
+                                        <Text isLink={true} size={'S'}>
                                             {user.accountUsername}
                                         </Text>
+                                    </Link>
                                     }
                                     image={user.accountAvatar}
                                     secondaryText={null}

@@ -5,8 +5,11 @@
 .position {
     width: 184px;
     text-align: center;
+    vertical-align: middle;
 }
 
 .score {
     text-align: center;
+    vertical-align: middle;
 }
+

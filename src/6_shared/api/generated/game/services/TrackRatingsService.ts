@@ -210,8 +210,7 @@ search?: string,
 page: number = 1,
 limit: number = 10,
 isDemo: boolean = false,
-search?: string,
-s): CancelablePromise<TrackRatingDto[]> {
+search?: string,): CancelablePromise<PaginationLeaderBoardDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/stats/public/leaderboard',

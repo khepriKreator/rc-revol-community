@@ -26,7 +26,7 @@ export const routerConfig = createBrowserRouter([
             },
             {
                 element: <PlayerStat/>,
-                path: 'player/:playerId'
+                path: 'account/:accountId'
             },
         ]
     }
