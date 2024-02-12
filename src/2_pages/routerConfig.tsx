@@ -1,9 +1,8 @@
 import {
     createBrowserRouter,
 } from "react-router-dom";
-import {TrackStat, HomePage, Tracks} from "./index.ts";
-import {Layout} from "../3_widgets/Layout";
-import {PlayerStat} from "./PlayerStat";
+import {PlayerStat, TrackStat, HomePage, Tracks} from "./index.ts";
+import {Layout} from "../3_widgets/";
 
 export const routerConfig = createBrowserRouter([
     {
@@ -17,16 +16,14 @@ export const routerConfig = createBrowserRouter([
             {
                 path: 'tracks',
                 element: <Tracks/>,
-                children: [
-                    {
-                        element: <TrackStat/>,
-                        path: 'tracks/:trackId',
-                    }
-                ]
             },
             {
                 element: <PlayerStat/>,
                 path: 'account/:accountId'
+            },
+            {
+                element: <TrackStat/>,
+                path: 'tracks/:trackId',
             },
         ]
     }

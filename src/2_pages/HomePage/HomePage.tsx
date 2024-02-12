@@ -24,8 +24,6 @@ export const HomePage = () => {
         setSearch(searchField)
         setPage(1);
     }
-    console.log(data);
-
     return (
         <div className={styles.homePage}>
             <Text size={'XL'} weight={'bold'}>

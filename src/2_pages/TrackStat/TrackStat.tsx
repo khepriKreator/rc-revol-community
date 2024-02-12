@@ -1,28 +1,54 @@
+import {useParams, Link} from "react-router-dom";
+import {useQuery} from "@tanstack/react-query";
 import Button from "react-bootstrap/Button";
 import {InputGroup} from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
+import {format} from "date-fns";
+import {useState} from "react";
+import {TrackRatingsService, TracksService} from "../../6_shared/api/generated/game";
 import {Cell, Text} from "../../6_shared";
 import styles from './styles.module.css';
-import {TracksService} from "../../6_shared/api/generated/game";
+
 
 export const TrackStat = () => {
+    const {trackId} = useParams();
 
- // TrackRatingsService.statsControllerTrackLeaderBoard
- // TracksService.trackControllerFind
+    const [page, setPage] = useState(1);
 
+    const {data: trackStat} = useQuery({
+        queryKey: [page],
+        queryFn: () => TrackRatingsService.statsControllerGetTrackLeaderBoard(`${trackId}`, page, 10, false, search)
+    })
+    console.log(useParams(), trackStat)
+
+    const {data: track} = useQuery({
+        queryKey: [],
+        queryFn: () => TracksService.trackControllerFind(`${trackId}`),
+    })
+    if (!track || !trackStat) {
+        return null;
+    }
+
+
+    // ФИЛЬТР
+    const [search, setSearch] = useState('')
+    const [searchField, setSearchField] = useState('');
+    const onApplySearch = () => {
+        setSearch(searchField)
+        setPage(1);
+    }
+    
     return (
         <div className={styles.display}>
             <Text size={'XL'} weight={'bold'}>
-                ss
+                {track.title}
             </Text>
 
             <Form className={styles.form}>
                 <InputGroup>
-                    <Form.Control>
-
-                    </Form.Control>
-                    <Button>
+                    <Form.Control onChange={(event) => setSearchField(event.target.value)}/>
+                    <Button onClick={() => onApplySearch()}>
                         Filter
                     </Button>
                 </InputGroup>
@@ -31,65 +57,58 @@ export const TrackStat = () => {
                 <thead>
                 <tr>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
-                            Position
-                        </Text>
+                        Position
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
-                            Player
-                        </Text>
+                        Player
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
-                            Best Lap Time
-                        </Text>
+                        Best Lap Time
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
-                            Time
-                        </Text>
+                        Time
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
-                            Date
-                        </Text>
+                        Date
                     </th>
                     <th>
-                        <Text color={'white'} size={'S'} weight={'bold'}>
-                            Number of Tries
-                        </Text>
+                        Number of Tries
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                    {users.map((user, index) => {
+                    {trackStat.items.map((item, index) => {
+                        const date = Date.parse(item.createdAt)
+                        const bestLapTime = item.bestLapTime ? format((item.bestLapTime * 1000), 'm:ss:SSS') : '-';
                         return (
                             <tr key={index}>
                                 <td>
-                                    {user.position}
+                                    {item.position}
                                 </td>
                                 <td>
                                     <Cell
                                         primaryText={
-                                            <Text size={'S'} >
-                                                {user.accountUsername}
-                                            </Text>
+                                            <Link to={`/account/${item.accountId}`}>
+                                                <Text isLink={true} size={'S'}>
+                                                    {item.accountUsername}
+                                                </Text>
+                                            </Link>
                                         }
-                                        image={user.accountAvatar}
+                                        image={item.accountAvatar}
+                                        secondaryText={null}
                                     />
                                 </td>
                                 <td>
-                                    {user.bestLapTime}
+                                    {bestLapTime}
                                 </td>
                                 <td>
-                                    {user.time}
+                                    {item.time}
                                 </td>
                                 <td>
-                                    date
+                                    {date}
                                 </td>
                                 <td>
-                                    number of tries
+                                    {item.number}
                                 </td>
                             </tr>
                         )

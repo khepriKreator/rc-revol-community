@@ -1,4 +1,4 @@
-import {useParams, Link} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom';
 import {useQuery} from "@tanstack/react-query";
 import Table from "react-bootstrap/Table";
 import {format} from 'date-fns';
@@ -61,15 +61,17 @@ export const PlayerStat = () => {
                 <tbody>
                     {tracks.map((track, index) => {
                         const date = Date.parse(track.createdAt)
+                        const bestLapTime = track.bestLapTime ? format((track.bestLapTime * 1000), 'm:ss:SSS') : '-';
                         return (
                             <tr key={index}>
                                 <td>
                                     <Cell
-                                        primaryText={<Link to={`/tracks/${track.trackPublicId}`}>
-                                            <Text isLink={true} size={'S'}>
-                                                {track.trackPublicId}
-                                            </Text>
-                                        </Link>
+                                        primaryText={
+                                            <Link to={`/tracks/${track.trackPublicId}`}>
+                                                <Text isLink={true} size={'S'}>
+                                                    {track.trackPublicId}
+                                                </Text>
+                                            </Link>
                                         }
                                         image={null}
                                         secondaryText={null}
@@ -79,7 +81,7 @@ export const PlayerStat = () => {
                                     {track.position}
                                 </td>
                                 <td>
-                                    {track.bestLapTime}
+                                    {bestLapTime}
                                 </td>
                                 <td>
                                     {track.time}
