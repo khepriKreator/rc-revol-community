@@ -20,6 +20,7 @@ export const HomePage = () => {
     if (!data) {
         return null;
     }
+    console.log(data.meta)
     const onApplySearch = () => {
         setSearch(searchField)
         setPage(1);

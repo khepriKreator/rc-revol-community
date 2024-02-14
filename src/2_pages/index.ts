@@ -1,6 +1,6 @@
 export * from './HomePage';
 
-export * from './Tracks';
+export * from './TracksList';
 
 export * from './PlayerStat';
 

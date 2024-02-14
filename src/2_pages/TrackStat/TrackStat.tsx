@@ -13,32 +13,28 @@ import styles from './styles.module.css';
 
 export const TrackStat = () => {
     const {trackId} = useParams();
-
+    // СТЕЙТЫ
     const [page, setPage] = useState(1);
-
+    const [search, setSearch] = useState('')
+    const [searchField, setSearchField] = useState('');
+    // КВЕРИКИ
     const {data: trackStat} = useQuery({
-        queryKey: [page],
+        queryKey: [search, page],
         queryFn: () => TrackRatingsService.statsControllerGetTrackLeaderBoard(`${trackId}`, page, 10, false, search)
     })
-    console.log(useParams(), trackStat)
-
     const {data: track} = useQuery({
-        queryKey: [],
+        queryKey: [trackId],
         queryFn: () => TracksService.trackControllerFind(`${trackId}`),
     })
     if (!track || !trackStat) {
         return null;
     }
-
-
     // ФИЛЬТР
-    const [search, setSearch] = useState('')
-    const [searchField, setSearchField] = useState('');
     const onApplySearch = () => {
         setSearch(searchField)
         setPage(1);
     }
-    
+
     return (
         <div className={styles.display}>
             <Text size={'XL'} weight={'bold'}>
@@ -77,24 +73,25 @@ export const TrackStat = () => {
                 </tr>
                 </thead>
                 <tbody>
-                    {trackStat.items.map((item, index) => {
-                        const date = Date.parse(item.createdAt)
-                        const bestLapTime = item.bestLapTime ? format((item.bestLapTime * 1000), 'm:ss:SSS') : '-';
+                    {trackStat.items.map((user, index) => {
+                        const date = Date.parse(user.createdAt)
+                        const bestLapTime = user.bestLapTime ? format((user.bestLapTime * 1000), 'm:ss:SSS') : '-';
+                        const time = user.time ? format((user.time * 1000), 'm:ss:SSS') : '-';
                         return (
                             <tr key={index}>
                                 <td>
-                                    {item.position}
+                                    {user.position}
                                 </td>
                                 <td>
                                     <Cell
                                         primaryText={
-                                            <Link to={`/account/${item.accountId}`}>
+                                            <Link to={`/account/${user.accountId}`}>
                                                 <Text isLink={true} size={'S'}>
-                                                    {item.accountUsername}
+                                                    {user.accountUsername}
                                                 </Text>
                                             </Link>
                                         }
-                                        image={item.accountAvatar}
+                                        image={user.accountAvatar}
                                         secondaryText={null}
                                     />
                                 </td>
@@ -102,13 +99,13 @@ export const TrackStat = () => {
                                     {bestLapTime}
                                 </td>
                                 <td>
-                                    {item.time}
+                                    {time}
                                 </td>
                                 <td>
-                                    {date}
+                                    {format(date, 'yyyy-MM-dd HH:mm')}
                                 </td>
                                 <td>
-                                    {item.number}
+                                    {user.number}
                                 </td>
                             </tr>
                         )

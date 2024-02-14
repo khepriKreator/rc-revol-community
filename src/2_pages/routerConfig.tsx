@@ -1,7 +1,7 @@
 import {
     createBrowserRouter,
 } from "react-router-dom";
-import {PlayerStat, TrackStat, HomePage, Tracks} from "./index.ts";
+import {PlayerStat, TracksList, TrackStat, HomePage} from "./index.ts";
 import {Layout} from "../3_widgets/";
 
 export const routerConfig = createBrowserRouter([
@@ -15,7 +15,7 @@ export const routerConfig = createBrowserRouter([
             },
             {
                 path: 'tracks',
-                element: <Tracks/>,
+                element: <TracksList/>,
             },
             {
                 element: <PlayerStat/>,

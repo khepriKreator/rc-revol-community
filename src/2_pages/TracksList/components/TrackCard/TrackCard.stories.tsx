@@ -14,9 +14,6 @@ export const Component = () => {
     return (
         <>
             <TrackCard
-                image={''}
-                trackName={'track name'}
-                tags={null}
             />
         </>
     );

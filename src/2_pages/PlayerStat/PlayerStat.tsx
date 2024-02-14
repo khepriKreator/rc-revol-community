@@ -62,6 +62,7 @@ export const PlayerStat = () => {
                     {tracks.map((track, index) => {
                         const date = Date.parse(track.createdAt)
                         const bestLapTime = track.bestLapTime ? format((track.bestLapTime * 1000), 'm:ss:SSS') : '-';
+                        const time = track.time ? format((track.time * 1000), 'm:ss:SSS') : '-';
                         return (
                             <tr key={index}>
                                 <td>
@@ -84,7 +85,7 @@ export const PlayerStat = () => {
                                     {bestLapTime}
                                 </td>
                                 <td>
-                                    {track.time}
+                                    {time}
                                 </td>
                                 <td>
                                     {format(date, 'yyyy-MM-dd HH:mm')}

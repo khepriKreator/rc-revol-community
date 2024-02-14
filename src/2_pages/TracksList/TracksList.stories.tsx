@@ -1,10 +1,10 @@
 /* eslint i18next/no-literal-string: "off" */
 import {Meta} from '@storybook/react';
 
-import {Tracks} from "./Tracks.tsx";
+import {TracksList} from "./TracksList.tsx";
 
 const meta: Meta = {
-    component: Tracks,
+    component: TracksList,
     title: 'pages/Tracks',
 };
 
@@ -14,7 +14,7 @@ export default meta;
 export const Component = () => {
     return (
         <>
-            <Tracks
+            <TracksList
             />
         </>
     );
