@@ -7,6 +7,7 @@ import {TrackRatingsService} from "../../6_shared/api/generated/game";
 import {GlobalLeaderBoard} from "./components/GlobalLeaderBoard";
 import styles from './styles.module.css'
 import {Text} from '../../6_shared';
+import {CustomPagination} from "../../6_shared/components/CustomPagination";
 
 export const HomePage = () => {
     const [search, setSearch] = useState('')
@@ -40,6 +41,7 @@ export const HomePage = () => {
                     </InputGroup>
                 </Form>
             <GlobalLeaderBoard users={data?.items}/>
+            <CustomPagination totalPages={data.meta.totalPages}/>
         </div>
     );
 };
