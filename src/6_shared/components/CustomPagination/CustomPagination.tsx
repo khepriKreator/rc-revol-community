@@ -1,28 +1,40 @@
 import Pagination from 'react-bootstrap/Pagination';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 export type PaginationProps = {
+    currentDataPage: number;
+    setDataPage: (currentPage: number) => void;
     totalPages: number;
 }
 
-export const CustomPagination = ({totalPages}: PaginationProps) => {
-    const [currentPage, setCurrentPage] = useState(1);
+export const CustomPagination = ({totalPages, setDataPage, currentDataPage}: PaginationProps) => {
+    const [currentPage, setCurrentPage] = useState(currentDataPage);
     const initialState = [1, 2, 3, 4, 5, 6, 7];
     const finalState = [114, 115, 116, 117, 118,119, 120]
     const [btnsSet, setBtnsSet] = useState(initialState);
-    const changeBtnsSet = (currentPage: number) => {
-        if (currentPage > 4 && currentPage < totalPages - 4) {
-            setBtnsSet([(currentPage -3), (currentPage - 2), (currentPage - 1), currentPage, (currentPage + 1), (currentPage + 2), (currentPage + 3)]);
-        }
-        if (currentPage > totalPages - 5) {
-            setBtnsSet(finalState);
-        }
+
+    useEffect(() => {
+            if (currentPage > 4) {
+                setBtnsSet(initialState);
+            }
+            if (currentPage > 4 && currentPage < totalPages - 4) {
+                setBtnsSet([(currentPage -3), (currentPage - 2), (currentPage - 1), currentPage, (currentPage + 1), (currentPage + 2), (currentPage + 3)]);
+            }
+            if (currentPage > totalPages - 5) {
+                setBtnsSet(finalState);
+            }
+    }, [currentPage])
+
+    const onClick = (currentPage: number) => {
+        setCurrentPage(currentPage);
+        setDataPage(currentPage);
     }
+
     const ShortPagination = () => Array(totalPages - 1).fill(null).map((_, index) => <>
         <Pagination.Item
             key={index}
-            onClick={() => setCurrentPage(index + 1)}
+            onClick={() => onClick(index + 1)}
         >
             {index + 1}</Pagination.Item>
     </>)
@@ -33,8 +45,7 @@ export const CustomPagination = ({totalPages}: PaginationProps) => {
                     <>
                         <Pagination.Item 
                             onClick={() => {
-                                    setCurrentPage(1)
-                                    setBtnsSet(initialState)
+                                    onClick(1)
                                 }
                             }
                         >
@@ -47,9 +58,8 @@ export const CustomPagination = ({totalPages}: PaginationProps) => {
                     btnsSet.map((btn, index) => 
                         <Pagination.Item 
                             onClick={() => {
-                                setCurrentPage(btn)
-                                changeBtnsSet(btn)
-                            }} 
+                                onClick(btn)
+                            }}
                             active={btn === currentPage}
                             key={index}
                         >
@@ -62,8 +72,7 @@ export const CustomPagination = ({totalPages}: PaginationProps) => {
                         <Pagination.Ellipsis/>
                         <Pagination.Item
                             onClick={() => {
-                                setCurrentPage(totalPages)
-                                changeBtnsSet(currentPage);
+                                onClick(totalPages)
                             }}
                         >   
                             {totalPages}
@@ -73,20 +82,17 @@ export const CustomPagination = ({totalPages}: PaginationProps) => {
             </>
         )
     }
-    console.log(currentPage, totalPages)
     return (
         <Pagination>
             <Pagination.First 
                 onClick={() => {
-                    setCurrentPage(1)
-                    setBtnsSet(initialState)
+                    onClick(1)
                 }}
                 disabled={currentPage === 1}
             />
             <Pagination.Prev 
                 onClick={() => {
-                    setCurrentPage(currentPage - 1);
-                    changeBtnsSet(currentPage);
+                    onClick(currentPage - 1);
                 }}
                 disabled={currentPage === 1}
             />
@@ -95,15 +101,13 @@ export const CustomPagination = ({totalPages}: PaginationProps) => {
             }
             <Pagination.Next 
                 onClick={() => {
-                    setCurrentPage(currentPage + 1);
-                    changeBtnsSet(currentPage);
+                    onClick(currentPage + 1);
                 }}
                 disabled={currentPage === totalPages}
             />
             <Pagination.Last 
                 onClick={() => {
-                    setCurrentPage(totalPages);
-                    changeBtnsSet(currentPage);
+                    onClick(totalPages);
                 }}
                 disabled={currentPage === totalPages}
             />

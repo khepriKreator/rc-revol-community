@@ -14,6 +14,8 @@ export const Component = () => {
     return (
         <>
             <CustomPagination
+                currentDataPage={1}
+                setDataPage={() => console.log('page')}
                 totalPages={10}
             />
         </>
