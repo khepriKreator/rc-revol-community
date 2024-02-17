@@ -1,4 +1,8 @@
-.text {
+.maxWidth {
+    width: 100%;
+}
+
+.fitContent {
     width: fit-content;
 }
 
@@ -10,6 +14,11 @@
 .m {
     font-size: 20px;
     line-height: 30px;
+}
+
+.l {
+    font-size: 25px;
+    line-height: 35px;
 }
 
 .xl {
@@ -45,7 +54,23 @@
     font-style: italic;
 }
 
+.left {
+    text-align: start;
+}
+
+.right {
+    text-align: end;
+}
+
+.center {
+    text-align: center;
+}
+
 .link {
     color: rgba(24, 119, 242, 1);
     border-bottom: 1px solid rgba(24, 119, 242, 1);
+}
+
+.nowrap {
+    white-space: nowrap;
 }

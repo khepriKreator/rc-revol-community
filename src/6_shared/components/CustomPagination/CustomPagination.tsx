@@ -83,34 +83,35 @@ export const CustomPagination = ({totalPages, setDataPage, currentDataPage}: Pag
         )
     }
     return (
-        <Pagination>
-            <Pagination.First 
-                onClick={() => {
-                    onClick(1)
-                }}
-                disabled={currentPage === 1}
-            />
-            <Pagination.Prev 
-                onClick={() => {
-                    onClick(currentPage - 1);
-                }}
-                disabled={currentPage === 1}
-            />
-            {
-                totalPages < 10 ? <ShortPagination/> : <LongPagination/>
-            }
-            <Pagination.Next 
-                onClick={() => {
-                    onClick(currentPage + 1);
-                }}
-                disabled={currentPage === totalPages}
-            />
-            <Pagination.Last 
-                onClick={() => {
-                    onClick(totalPages);
-                }}
-                disabled={currentPage === totalPages}
-            />
-        </Pagination>
+        (totalPages > 1) &&
+            <Pagination>
+                <Pagination.First
+                    onClick={() => {
+                        onClick(1)
+                    }}
+                    disabled={currentPage === 1}
+                />
+                <Pagination.Prev
+                    onClick={() => {
+                        onClick(currentPage - 1);
+                    }}
+                    disabled={currentPage === 1}
+                />
+                {
+                    totalPages < 10 ? <ShortPagination/> : <LongPagination/>
+                }
+                <Pagination.Next
+                    onClick={() => {
+                        onClick(currentPage + 1);
+                    }}
+                    disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                    onClick={() => {
+                        onClick(totalPages);
+                    }}
+                    disabled={currentPage === totalPages}
+                />
+            </Pagination>
     )
 };
