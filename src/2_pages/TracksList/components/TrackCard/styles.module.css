@@ -1,7 +1,8 @@
 .card {
     border: 1px solid rgba(0, 0, 0, 0.17);
     border-radius: 4px;
-    max-width: 298px;
+    width: 298px;
+    overflow: hidden;
 }
 .description {
     padding: 16px 16px 24px 16px;
@@ -24,4 +25,13 @@
 }
 .tagButton:hover {
     color: rgba(33, 37, 41, 1) !important;
+}
+
+.skeletonContainer {
+    height: 200px;
+}
+
+.skeletonImage {
+    line-height: inherit;
+    border-radius: 0;
 }

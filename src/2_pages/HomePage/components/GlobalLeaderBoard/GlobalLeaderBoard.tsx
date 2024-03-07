@@ -1,3 +1,5 @@
+import "react-loading-skeleton/dist/skeleton.css"
+import Skeleton from "react-loading-skeleton";
 import Table from 'react-bootstrap/Table';
 import {Link} from 'react-router-dom'
 import {TrackRatingDto} from "../../../../6_shared/api/generated/game";
@@ -5,15 +7,16 @@ import {Cell, Text} from '../../../../6_shared';
 import styles from './styles.module.css';
 
 export type GlobalLeaderBoardProps = {
+    isLoading: boolean;
     users: TrackRatingDto[] | undefined;
 }
 
-export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
+export const GlobalLeaderBoard = ({users, isLoading}: GlobalLeaderBoardProps) => {
     if (users === undefined) {
         return null;
     }
-
     return (
+        <>
         <Table borderless striped>
             <thead>
                 <tr>
@@ -29,7 +32,7 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                 </tr>
             </thead>
             <tbody>
-                {users?.map((user, index) => {
+                {isLoading ? <GlobalLeaderBoardSkeleton/> : users?.map((user, index) => {
                     return (
                         <tr key={index}>
                             <td>
@@ -56,5 +59,32 @@ export const GlobalLeaderBoard = ({users}: GlobalLeaderBoardProps) => {
                 })}
             </tbody>
         </Table>
+        </>
     );
 };
+
+export const GlobalLeaderBoardSkeleton = () => {
+    return (
+        <>
+            {Array(10).fill(null).map((_, index) =>
+                    <tr key={index}>
+                        < td >
+                            < Skeleton height={16}/>
+                        </td>
+                        <td>
+                            <div className={styles.skeletonMiddle}>
+                                <Skeleton height={'40px'} width={'40px'}/>
+                                <div className={'w-100 align-middle'}>
+                                <Skeleton height={16}/>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <Skeleton height={16}/>
+                        </td>
+                    </tr>
+                )
+            }
+        </>
+    )
+}

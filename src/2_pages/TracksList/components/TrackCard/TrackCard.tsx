@@ -1,8 +1,9 @@
+import Skeleton from "react-loading-skeleton";
 import Stack from 'react-bootstrap/Stack';
 import Image from 'react-bootstrap/Image';
 import {Link} from 'react-router-dom';
-import {TrackDto} from '../../../../6_shared/api/generated/game/models/TrackDto.ts';
 import {TrackTagDto} from "../../../../6_shared/api/generated/game";
+import {TrackDto} from '../../../../6_shared/api/generated/game';
 import {Cell, Text} from '../../../../6_shared';
 import styles from './styles.module.css';
 
@@ -45,3 +46,19 @@ export const TrackCard = ({trackInfo, onClick}: TrackCardProps) => {
         </div>
     );
 };
+
+export const TrackCardSkeleton = () => {
+    return (
+        <div className={styles.card}>
+            <Stack direction={'vertical'}>
+                <Skeleton className={styles.skeletonImage} containerClassName={styles.skeletonContainer} height={'200px'}/>
+                <div className={styles.description}>
+                    <Stack direction={'vertical'}>
+                        <Skeleton height={20}/>
+                        <Skeleton height={16} width={'30%'}/>
+                    </Stack>
+                </div>
+            </Stack>
+        </div>
+    )
+}

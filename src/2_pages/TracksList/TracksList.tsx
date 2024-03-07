@@ -1,7 +1,7 @@
 import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
+import {TrackCardSkeleton, TrackCard} from "./components/TrackCard";
 import {TracksService} from "../../6_shared/api/generated/game";
-import {TrackCard} from "./components/TrackCard";
 import styles from './styles.module.css';
 import {Text} from '../../6_shared';
 
@@ -25,7 +25,7 @@ export const TracksList = () => {
         newTagsNames.push(tagName);
         setTagsNames(newTagsNames);
     }*/
-    const {data} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: [page],
         queryFn: () => TracksService.trackControllerPaginate(
             page,
@@ -57,7 +57,7 @@ export const TracksList = () => {
                 }
             </div>*/}
             <div className={styles.trackCardList}>
-                {data.items.map((trackInfo, index) =>
+                {isLoading ? Array(8).fill(null).map((_, index) => <TrackCardSkeleton key={index}/>) : data.items.map((trackInfo, index) =>
                     <TrackCard key={index} onClick={(tag) => console.log(tag)} trackInfo={trackInfo}/>
                 )}
             </div>

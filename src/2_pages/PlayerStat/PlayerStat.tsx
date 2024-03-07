@@ -1,5 +1,6 @@
 import {useParams, Link} from 'react-router-dom';
 import {useQuery} from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
 import Table from "react-bootstrap/Table";
 import {format} from 'date-fns';
 import {useState} from "react";
@@ -14,7 +15,7 @@ export const PlayerStat = () => {
         queryFn: () => AccountService.accountControllerFindOne(Number(accountId))
     })
     const [page, setPage] = useState(1);
-    const {data} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: [page],
         queryFn: () => TrackRatingsService.statsControllerGetAccountLeaderBoard(Number(accountId), page, 10, false)
     })
@@ -59,7 +60,7 @@ export const PlayerStat = () => {
                 </tr>
                 </thead>
                 <tbody>
-                    {tracks.map((track, index) => {
+                    {isLoading ? <PlayerStatSkeleton/> : tracks.map((track, index) => {
                         const date = Date.parse(track.createdAt)
                         const bestLapTime = track.bestLapTime ? format((track.bestLapTime * 1000), 'm:ss:SSS') : '-';
                         const time = track.time ? format((track.time * 1000), 'm:ss:SSS') : '-';
@@ -102,3 +103,40 @@ export const PlayerStat = () => {
     );
 };
 
+export const PlayerStatSkeleton = () => {
+    return (
+        <>
+            {Array(10).fill(null).map((_, index) =>
+                <tr key={index}>
+                    {/*<td>
+                        <div className={styles.skeletonFirst}>
+                            <Skeleton height={'40px'} width={'40px'}/>
+                            <div className={'w-100 align-middle'}>
+                                <Skeleton height={16}/>
+                            </div>
+                        </div>
+                    </td>*/}
+                    <td>
+                        <Skeleton height={16}/>
+                    </td>
+                    <td>
+                        <Skeleton height={16}/>
+                    </td>
+                    < td >
+                        < Skeleton height={16}/>
+                    </td>
+                    < td >
+                        < Skeleton height={16}/>
+                    </td>
+                    < td >
+                        < Skeleton height={16}/>
+                    </td>
+                    < td >
+                        < Skeleton height={16}/>
+                    </td>
+                </tr>
+            )
+            }
+        </>
+    )
+}

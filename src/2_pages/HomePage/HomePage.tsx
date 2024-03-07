@@ -14,7 +14,7 @@ export const HomePage = () => {
     const [page, setPage] = useState(1);
     const [searchField, setSearchField] = useState('');
 
-    const {data} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: [search, page],
         queryFn: () => TrackRatingsService.statsControllerGetGlobalLeaderBoard(page, 10, false, search)
     })
@@ -29,7 +29,7 @@ export const HomePage = () => {
     return (
         <div className={styles.homePage}>
             <Text size={'XL'} weight={'bold'}>
-                Global leaderboard
+                Global Leaderboard
             </Text>
 
                 <Form className={styles.form}>
@@ -40,7 +40,7 @@ export const HomePage = () => {
                         </Button>
                     </InputGroup>
                 </Form>
-            <GlobalLeaderBoard users={data?.items}/>
+            <GlobalLeaderBoard isLoading={isLoading} users={data?.items}/>
             <CustomPagination currentDataPage={page} setDataPage={(currentPage) => setPage(currentPage)} totalPages={data.meta.totalPages}/>
         </div>
     );
