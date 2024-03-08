@@ -5,6 +5,7 @@ import { TracksService } from '../../6_shared/api/generated/game';
 import styles from './styles.module.css';
 import { Text } from '../../6_shared';
 
+const Q_KEY = 'trackControllerPaginate';
 export const TracksList = () => {
   const [page, setPage] = useState(1);
   /*const [tagsIds, setTagsIds] = useState<number[] | null>(null);
@@ -26,7 +27,7 @@ export const TracksList = () => {
         setTagsNames(newTagsNames);
     }*/
   const { data, isLoading } = useQuery({
-    queryKey: [page],
+    queryKey: [Q_KEY, page],
     queryFn: () =>
       TracksService.trackControllerPaginate(
         page,

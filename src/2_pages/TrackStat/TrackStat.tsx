@@ -14,6 +14,8 @@ import {
 import { Cell, Text } from '../../6_shared';
 import styles from './styles.module.css';
 
+const Q_KEY1 = 'statsControllerGetTrackLeaderBoard';
+const Q_KEY2 = 'trackControllerFind';
 export const TrackStat = () => {
   const { trackId } = useParams();
   // СТЕЙТЫ
@@ -22,7 +24,7 @@ export const TrackStat = () => {
   const [searchField, setSearchField] = useState('');
   // КВЕРИКИ
   const { data: trackStat } = useQuery({
-    queryKey: [search, page],
+    queryKey: [Q_KEY1, search, page],
     queryFn: () =>
       TrackRatingsService.statsControllerGetTrackLeaderBoard(
         `${trackId}`,
@@ -33,7 +35,7 @@ export const TrackStat = () => {
       ),
   });
   const { data: track, isLoading } = useQuery({
-    queryKey: [trackId],
+    queryKey: [Q_KEY2, trackId],
     queryFn: () => TracksService.trackControllerFind(`${trackId}`),
   });
   if (!track || !trackStat) {

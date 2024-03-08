@@ -10,16 +10,17 @@ import {
 } from '../../6_shared/api/generated/game';
 import { Cell, Text } from '../../6_shared';
 import styles from './styles.module.css';
-
+const Q_KEY1 = 'accountControllerFindOne';
+const Q_KEY2 = 'statsControllerGetAccountLeaderBoard';
 export const PlayerStat = () => {
   const { accountId } = useParams();
   const { data: user } = useQuery({
-    queryKey: [],
+    queryKey: [Q_KEY1],
     queryFn: () => AccountService.accountControllerFindOne(Number(accountId)),
   });
   const [page, setPage] = useState(1);
   const { data, isLoading } = useQuery({
-    queryKey: [page],
+    queryKey: [Q_KEY2, page],
     queryFn: () =>
       TrackRatingsService.statsControllerGetAccountLeaderBoard(
         Number(accountId),
