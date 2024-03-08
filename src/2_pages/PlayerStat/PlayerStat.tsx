@@ -15,12 +15,12 @@ const Q_KEY2 = 'statsControllerGetAccountLeaderBoard';
 export const PlayerStat = () => {
   const { accountId } = useParams();
   const { data: user } = useQuery({
-    queryKey: [Q_KEY1],
+    queryKey: [Q_KEY1, accountId],
     queryFn: () => AccountService.accountControllerFindOne(Number(accountId)),
   });
   const [page, setPage] = useState(1);
   const { data, isLoading } = useQuery({
-    queryKey: [Q_KEY2, page],
+    queryKey: [Q_KEY2, accountId, page],
     queryFn: () =>
       TrackRatingsService.statsControllerGetAccountLeaderBoard(
         Number(accountId),
