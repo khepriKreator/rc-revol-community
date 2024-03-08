@@ -6,5 +6,5 @@
  * @link https://vitejs.dev/guide/env-and-mode
  * */
 export const ENV = {
-    API_ENDPOINT: import.meta.env.VITE_API_ENDPOINT
-}
+  API_ENDPOINT: import.meta.env.VITE_API_ENDPOINT,
+};

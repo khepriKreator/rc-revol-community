@@ -9,18 +9,18 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class TracksTagsService {
-
-    /**
-     * Получение списка тегов
-     * Возвращает список тегов
-     * @returns TrackTagDto Возвращает список тегов
-     * @throws ApiError
-     */
-    public static trackTagControllerFindAll(): CancelablePromise<Array<TrackTagDto>> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/track-tag',
-        });
-    }
-
+  /**
+   * Получение списка тегов
+   * Возвращает список тегов
+   * @returns TrackTagDto Возвращает список тегов
+   * @throws ApiError
+   */
+  public static trackTagControllerFindAll(): CancelablePromise<
+    Array<TrackTagDto>
+  > {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/track-tag',
+    });
+  }
 }

@@ -9,18 +9,18 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class TracksCategoryService {
-
-    /**
-     * Получение списка тегов
-     * Возвращает список тегов
-     * @returns TrackCategoryDto Возвращает список категорий
-     * @throws ApiError
-     */
-    public static trackCategoryControllerGetAllCategories(): CancelablePromise<Array<TrackCategoryDto>> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/track-category',
-        });
-    }
-
+  /**
+   * Получение списка тегов
+   * Возвращает список тегов
+   * @returns TrackCategoryDto Возвращает список категорий
+   * @throws ApiError
+   */
+  public static trackCategoryControllerGetAllCategories(): CancelablePromise<
+    Array<TrackCategoryDto>
+  > {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/track-category',
+    });
+  }
 }

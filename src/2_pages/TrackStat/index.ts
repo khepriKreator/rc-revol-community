@@ -1,1 +1,1 @@
-export * from './TrackStat'
+export * from './TrackStat';

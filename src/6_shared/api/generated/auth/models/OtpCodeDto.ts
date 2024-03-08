@@ -4,8 +4,8 @@
 /* eslint-disable */
 
 export type OtpCodeDto = {
-    /**
-     * OTP код
-     */
-    code: string;
+  /**
+   * OTP код
+   */
+  code: string;
 };

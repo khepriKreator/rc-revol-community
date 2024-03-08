@@ -1,29 +1,29 @@
 .header {
-    background-color: rgba(33, 37, 41, 1);
-    padding: 8px 12px;
+  background-color: rgba(33, 37, 41, 1);
+  padding: 8px 12px;
 }
 
 .title {
-    color: rgba(255, 255, 255, 1);
-    font-weight: bold;
-    font-size: 20px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .title:hover {
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 .inactiveLink {
-    color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .inactiveLink:hover {
-    color: rgba(255, 255, 255, 0.80);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .activeLink {
-    color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 .activeLink:hover {
-    color: rgba(255, 255, 255, 0.80);
+  color: rgba(255, 255, 255, 0.8);
 }

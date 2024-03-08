@@ -4,6 +4,6 @@
 /* eslint-disable */
 
 export type TrackCategoryDto = {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 };

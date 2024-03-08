@@ -4,6 +4,6 @@
 /* eslint-disable */
 
 export type HttpExceptionDto = {
-    message: string;
-    statusCode: string;
+  message: string;
+  statusCode: string;
 };

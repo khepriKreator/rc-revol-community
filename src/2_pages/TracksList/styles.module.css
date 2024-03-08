@@ -1,23 +1,23 @@
 .trackCardList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 17px;
-    justify-content: flex-start;
-    padding-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  justify-content: flex-start;
+  padding-top: 30px;
 }
 
 .tagsList {
-    padding: 15px 0;
+  padding: 15px 0;
 }
 
 .tagButton {
-    color: rgba(108, 117, 125, 1);
-    font-style: italic;
-    font-weight: normal;
-    font-size: 16px;
-    text-align: start;
-    border: none;
-    border-radius: 15px;
-    padding: 3px 7px;
-    margin: 5px;
+  color: rgba(108, 117, 125, 1);
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  text-align: start;
+  border: none;
+  border-radius: 15px;
+  padding: 3px 7px;
+  margin: 5px;
 }

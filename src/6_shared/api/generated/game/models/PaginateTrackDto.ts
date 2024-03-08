@@ -7,6 +7,6 @@ import type { PageInfoMetaDto } from './PageInfoMetaDto';
 import type { TrackDto } from './TrackDto';
 
 export type PaginateTrackDto = {
-    meta: PageInfoMetaDto;
-    items: Array<TrackDto>;
+  meta: PageInfoMetaDto;
+  items: Array<TrackDto>;
 };

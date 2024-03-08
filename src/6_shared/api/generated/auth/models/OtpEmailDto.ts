@@ -4,8 +4,8 @@
 /* eslint-disable */
 
 export type OtpEmailDto = {
-    /**
-     * Email
-     */
-    email: string;
+  /**
+   * Email
+   */
+  email: string;
 };

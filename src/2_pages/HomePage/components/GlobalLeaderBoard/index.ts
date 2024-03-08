@@ -1,1 +1,1 @@
-export * from './GlobalLeaderBoard'
+export * from './GlobalLeaderBoard';

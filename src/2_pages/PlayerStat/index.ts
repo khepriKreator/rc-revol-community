@@ -1,1 +1,1 @@
-export * from './PlayerStat.tsx'
+export * from './PlayerStat.tsx';

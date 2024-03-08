@@ -1,76 +1,76 @@
 .maxWidth {
-    width: 100%;
+  width: 100%;
 }
 
 .fitContent {
-    width: fit-content;
+  width: fit-content;
 }
 
 .s {
-   font-size: 16px;
-    line-height: 24px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .m {
-    font-size: 20px;
-    line-height: 30px;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 .l {
-    font-size: 25px;
-    line-height: 35px;
+  font-size: 25px;
+  line-height: 35px;
 }
 
 .xl {
-    font-size: 40px;
-    line-height: 48px;
+  font-size: 40px;
+  line-height: 48px;
 }
 
 .black {
-    color: rgba(33, 37, 41, 1);
+  color: rgba(33, 37, 41, 1);
 }
 
 .white {
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 .gray {
-    color: rgba(108, 117, 125, 1);
+  color: rgba(108, 117, 125, 1);
 }
 
 .blue {
-    color: rgba(24, 119, 242, 1);
+  color: rgba(24, 119, 242, 1);
 }
 
 .normal {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .bold {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .italic {
-    font-style: italic;
+  font-style: italic;
 }
 
 .left {
-    text-align: start;
+  text-align: start;
 }
 
 .right {
-    text-align: end;
+  text-align: end;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .link {
-    color: rgba(24, 119, 242, 1);
-    border-bottom: 1px solid rgba(24, 119, 242, 1);
+  color: rgba(24, 119, 242, 1);
+  border-bottom: 1px solid rgba(24, 119, 242, 1);
 }
 
 .nowrap {
-    white-space: nowrap;
+  white-space: nowrap;
 }

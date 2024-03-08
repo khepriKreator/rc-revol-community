@@ -4,9 +4,9 @@
 /* eslint-disable */
 
 export type PageInfoMetaDto = {
-    itemCount: number;
-    totalItems: number;
-    itemsPerPage: number;
-    totalPages: number;
-    currentPage: number;
+  itemCount: number;
+  totalItems: number;
+  itemsPerPage: number;
+  totalPages: number;
+  currentPage: number;
 };

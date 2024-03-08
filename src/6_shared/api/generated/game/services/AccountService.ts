@@ -9,26 +9,24 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
 export class AccountService {
-
-    /**
-     * Получить аккаунт по id
-     * @param id 
-     * @returns AccountDto Аккаунт найден
-     * @throws ApiError
-     */
-    public static accountControllerFindOne(
-id: number,
-): CancelablePromise<AccountDto> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/account/{id}',
-            path: {
-                'id': id,
-            },
-            errors: {
-                404: `Аккаунт не найден`,
-            },
-        });
-    }
-
+  /**
+   * Получить аккаунт по id
+   * @param id
+   * @returns AccountDto Аккаунт найден
+   * @throws ApiError
+   */
+  public static accountControllerFindOne(
+    id: number,
+  ): CancelablePromise<AccountDto> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/account/{id}',
+      path: {
+        id: id,
+      },
+      errors: {
+        404: `Аккаунт не найден`,
+      },
+    });
+  }
 }

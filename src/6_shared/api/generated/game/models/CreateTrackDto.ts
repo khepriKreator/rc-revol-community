@@ -4,13 +4,13 @@
 /* eslint-disable */
 
 export type CreateTrackDto = {
-    /**
-     * В формате JSON
-     */
-    data: Record<string, any>;
-    title: string;
-    published: boolean;
-    previewId?: number | null;
-    tagsIds: Array<number>;
-    categoryId: number;
+  /**
+   * В формате JSON
+   */
+  data: Record<string, any>;
+  title: string;
+  published: boolean;
+  previewId?: number | null;
+  tagsIds: Array<number>;
+  categoryId: number;
 };

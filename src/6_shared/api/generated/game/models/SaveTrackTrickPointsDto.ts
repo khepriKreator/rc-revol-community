@@ -4,12 +4,12 @@
 /* eslint-disable */
 
 export type SaveTrackTrickPointsDto = {
-    /**
-     * Сохранить результат для трассы в demo версии игры
-     */
-    isDemo: boolean;
-    /**
-     * Очки трюков
-     */
-    trick_points: number;
+  /**
+   * Сохранить результат для трассы в demo версии игры
+   */
+  isDemo: boolean;
+  /**
+   * Очки трюков
+   */
+  trick_points: number;
 };

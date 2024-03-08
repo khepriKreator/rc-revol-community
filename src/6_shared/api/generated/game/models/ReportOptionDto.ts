@@ -6,13 +6,13 @@
 import type { ReportOptionType } from './ReportOptionType';
 
 export type ReportOptionDto = {
-    id: number;
-    /**
-     * Название опции жалобы
-     */
-    text: string;
-    /**
-     * Тип жалобы
-     */
-    type: ReportOptionType;
+  id: number;
+  /**
+   * Название опции жалобы
+   */
+  text: string;
+  /**
+   * Тип жалобы
+   */
+  type: ReportOptionType;
 };

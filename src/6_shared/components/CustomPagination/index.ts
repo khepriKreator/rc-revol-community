@@ -1,1 +1,1 @@
-export * from './CustomPagination.tsx'
+export * from './CustomPagination.tsx';

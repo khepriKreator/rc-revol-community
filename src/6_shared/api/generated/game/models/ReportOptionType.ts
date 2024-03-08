@@ -4,6 +4,6 @@
 /* eslint-disable */
 
 export enum ReportOptionType {
-    TRACK = 'track',
-    ACCOUNT = 'account',
+  TRACK = 'track',
+  ACCOUNT = 'account',
 }

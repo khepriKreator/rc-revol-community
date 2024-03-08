@@ -4,16 +4,16 @@
 /* eslint-disable */
 
 export type AccountDto = {
-    /**
-     * ID
-     */
-    id: number;
-    /**
-     * Имя аккаунта
-     */
-    username: string;
-    /**
-     * Ссылка на аватарку
-     */
-    avatar: string;
+  /**
+   * ID
+   */
+  id: number;
+  /**
+   * Имя аккаунта
+   */
+  username: string;
+  /**
+   * Ссылка на аватарку
+   */
+  avatar: string;
 };

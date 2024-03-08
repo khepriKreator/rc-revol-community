@@ -4,5 +4,5 @@
 /* eslint-disable */
 
 export type SignInWithSteamDto = {
-    ticket: string;
+  ticket: string;
 };

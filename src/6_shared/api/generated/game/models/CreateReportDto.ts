@@ -6,20 +6,20 @@
 import type { ReportOptionType } from './ReportOptionType';
 
 export type CreateReportDto = {
-    /**
-     * ID объекта, на который пожаловались
-     */
-    reportableId: string;
-    /**
-     * Тип объекта, на который пожаловались
-     */
-    reportableType: ReportOptionType;
-    /**
-     * Текст жалобы
-     */
-    text: string;
-    /**
-     * ID опции жалобы
-     */
-    optionId: number;
+  /**
+   * ID объекта, на который пожаловались
+   */
+  reportableId: string;
+  /**
+   * Тип объекта, на который пожаловались
+   */
+  reportableType: ReportOptionType;
+  /**
+   * Текст жалобы
+   */
+  text: string;
+  /**
+   * ID опции жалобы
+   */
+  optionId: number;
 };

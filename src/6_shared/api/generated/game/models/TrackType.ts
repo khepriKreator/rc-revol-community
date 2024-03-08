@@ -4,6 +4,6 @@
 /* eslint-disable */
 
 export enum TrackType {
-    CUSTOM = 'custom',
-    DEFAULT = 'default',
+  CUSTOM = 'custom',
+  DEFAULT = 'default',
 }

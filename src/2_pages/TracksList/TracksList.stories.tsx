@@ -1,27 +1,25 @@
 /* eslint i18next/no-literal-string: "off" */
-import {Meta} from '@storybook/react';
+import { Meta } from '@storybook/react';
 
-import {TracksList} from "./TracksList.tsx";
+import { TracksList } from './TracksList.tsx';
 
 const meta: Meta = {
-    component: TracksList,
-    title: 'pages/Tracks',
+  component: TracksList,
+  title: 'pages/Tracks',
 };
 
 export default meta;
 
-
 export const Component = () => {
-    return (
-        <>
-            <TracksList
-            />
-        </>
-    );
+  return (
+    <>
+      <TracksList />
+    </>
+  );
 };
 
 Component.parameters = {
-    msw: {
-        handlers: []
-    },
-}
+  msw: {
+    handlers: [],
+  },
+};

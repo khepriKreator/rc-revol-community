@@ -1,37 +1,37 @@
 .card {
-    border: 1px solid rgba(0, 0, 0, 0.17);
-    border-radius: 4px;
-    width: 298px;
-    overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-radius: 4px;
+  width: 298px;
+  overflow: hidden;
 }
 .description {
-    padding: 16px 16px 24px 16px;
+  padding: 16px 16px 24px 16px;
 }
 .tags {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5px;
 }
 .tagButton {
-    color: rgba(108, 117, 125, 1);
-    font-style: italic;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    text-align: start;
-    border: none;
-    background: none;
-    padding: 0;
+  color: rgba(108, 117, 125, 1);
+  font-style: italic;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: start;
+  border: none;
+  background: none;
+  padding: 0;
 }
 .tagButton:hover {
-    color: rgba(33, 37, 41, 1) !important;
+  color: rgba(33, 37, 41, 1) !important;
 }
 
 .skeletonContainer {
-    height: 200px;
+  height: 200px;
 }
 
 .skeletonImage {
-    line-height: inherit;
-    border-radius: 0;
+  line-height: inherit;
+  border-radius: 0;
 }
