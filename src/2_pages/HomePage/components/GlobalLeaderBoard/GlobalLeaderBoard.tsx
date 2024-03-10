@@ -8,12 +8,14 @@ import styles from './styles.module.css';
 
 export type GlobalLeaderBoardProps = {
   isLoading: boolean;
+  isPlaceholderData: boolean;
   users: TrackRatingDto[] | undefined;
 };
 
 export const GlobalLeaderBoard = ({
   users,
   isLoading,
+    isPlaceholderData,
 }: GlobalLeaderBoardProps) => {
   if (users === undefined) {
     return null;
@@ -29,7 +31,7 @@ export const GlobalLeaderBoard = ({
           </tr>
         </thead>
         <tbody>
-          {isLoading ? (
+          {(isLoading || isPlaceholderData) ? (
             <GlobalLeaderBoardSkeleton />
           ) : (
             users?.map((user, index) => {

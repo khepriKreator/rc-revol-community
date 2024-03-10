@@ -2,7 +2,6 @@ import Pagination from 'react-bootstrap/Pagination';
 import { useEffect, useState } from 'react';
 
 export type PaginationProps = {
-  currentDataPage: number;
   setDataPage: (currentPage: number) => void;
   totalPages: number;
 };
@@ -10,9 +9,8 @@ export type PaginationProps = {
 export const CustomPagination = ({
   totalPages,
   setDataPage,
-  currentDataPage,
 }: PaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(currentDataPage);
+  const [currentPage, setCurrentPage] = useState(1);
   const initialState = [1, 2, 3, 4, 5, 6, 7];
   const finalState = [114, 115, 116, 117, 118, 119, 120];
   const [btnsSet, setBtnsSet] = useState(initialState);
@@ -32,7 +30,7 @@ export const CustomPagination = ({
         currentPage + 3,
       ]);
     }
-    if (currentPage > totalPages - 5) {
+    if (totalPages > 10 && currentPage > totalPages - 5) {
       setBtnsSet(finalState);
     }
   }, [currentPage]);
@@ -64,7 +62,7 @@ export const CustomPagination = ({
             >
               1
             </Pagination.Item>
-            <Pagination.Ellipsis />
+            <Pagination.Ellipsis disabled/>
           </>
         )}
         {btnsSet.map((btn, index) => (
@@ -80,7 +78,7 @@ export const CustomPagination = ({
         ))}
         {currentPage < totalPages - 4 && (
           <>
-            <Pagination.Ellipsis />
+            <Pagination.Ellipsis disabled/>
             <Pagination.Item
               onClick={() => {
                 onClick(totalPages);
@@ -93,6 +91,7 @@ export const CustomPagination = ({
       </>
     );
   };
+  console.log(btnsSet, currentPage, totalPages)
   return (
     totalPages > 1 && (
       <Pagination>

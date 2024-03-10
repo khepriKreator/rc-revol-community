@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import Button from 'react-bootstrap/Button';
 import { InputGroup } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { CustomPagination } from '../../6_shared/components/CustomPagination';
@@ -15,7 +15,7 @@ export const HomePage = () => {
   const [page, setPage] = useState(1);
   const [searchField, setSearchField] = useState('');
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isPlaceholderData } = useQuery({
     queryKey: [Q_KEY, search, page],
     queryFn: () =>
       TrackRatingsService.statsControllerGetGlobalLeaderBoard(
@@ -45,9 +45,8 @@ export const HomePage = () => {
           <Button onClick={() => onApplySearch()}>Filter</Button>
         </InputGroup>
       </Form>
-      <GlobalLeaderBoard isLoading={isLoading} users={data?.items} />
+      <GlobalLeaderBoard isLoading={isLoading} isPlaceholderData={isPlaceholderData} users={data?.items} />
       <CustomPagination
-        currentDataPage={page}
         setDataPage={(currentPage) => setPage(currentPage)}
         totalPages={data?.meta.totalPages || 0}
       />
