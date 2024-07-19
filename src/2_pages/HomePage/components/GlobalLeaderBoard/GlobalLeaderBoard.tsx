@@ -70,18 +70,16 @@ export const GlobalLeaderBoardSkeleton = () => {
         .map((_, index) => (
           <tr key={index}>
             <td>
-              <Skeleton height={16} />
+              <Skeleton height={16} width={60}/>
             </td>
             <td>
               <div className={styles.skeletonMiddle}>
-                <Skeleton height={'40px'} width={'40px'} />
-                <div className={'w-100 align-middle'}>
-                  <Skeleton height={16} />
-                </div>
+                <Skeleton className={styles.skeletonMiddleImg}  height={'40px'} width={'40px'} />
+                  <Skeleton height={16} width={200} />
               </div>
             </td>
             <td>
-              <Skeleton height={16} />
+              <Skeleton height={16} width={60}/>
             </td>
           </tr>
         ))}
