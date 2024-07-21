@@ -1,13 +1,10 @@
 import {HttpResponse, http} from 'msw';
+import {ReportOptionDtoFaker} from "../../faker/ReportOptionDtoFaker.ts";
 
 export const ReportsOptionsServiceHandlers = {
-    reportOptionControllerGetAllHandler: (type?: 'track' | 'account') => {
+    reportOptionControllerGetAllHandler: () => {
         return http.get('/report-option', () => {
-            return HttpResponse.json({
-                id: 1,
-                text: '',
-                type: type,
-            })
+            return HttpResponse.json(ReportOptionDtoFaker())
         })
     }
 }

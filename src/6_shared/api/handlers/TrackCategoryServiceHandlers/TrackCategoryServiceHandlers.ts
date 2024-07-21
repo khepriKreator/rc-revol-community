@@ -1,12 +1,10 @@
 import {HttpResponse, http} from 'msw'
+import {TrackCategoryDtoFaker} from "../../faker/TrackCategoryDtoFaker.ts";
 
 export const TrackCategoryServiceHandlers = {
     trackCategoryControllerGetAllCategoriesHandler: () => {
         return http.get('/track-category', () => {
-            return HttpResponse.json({
-                id: 1,
-                name: '',
-            })
+            return HttpResponse.json(TrackCategoryDtoFaker())
         })
     }
 }
