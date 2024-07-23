@@ -10,8 +10,19 @@ import './index.css';
 
 OpenAPI.BASE = 'https://rc-revo-game-stage.herokuapp.com'; /*ENV.API_ENDPOINT*/
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+async function enableMocking() {
+    if (process.env.NODE_ENV !== 'development') {
+        return
+    }
+
+    const { worker } = await import('./6_shared/api/mocks/browser')
+    // `worker.start()` returns a Promise that resolves
+    // once the Service Worker is up and ready to intercept requests.
+    return worker.start()
+}
+
+enableMocking().then(() => ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-);
+))

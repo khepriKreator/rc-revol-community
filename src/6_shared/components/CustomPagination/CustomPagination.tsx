@@ -91,7 +91,6 @@ export const CustomPagination = ({
       </>
     );
   };
-  console.log(btnsSet, currentPage, totalPages)
   return (
     totalPages > 1 && (
       <Pagination>

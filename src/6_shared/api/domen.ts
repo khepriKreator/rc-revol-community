@@ -1,0 +1,1 @@
+export const domenURL = 'https://rc-revo-game-stage.herokuapp.com'

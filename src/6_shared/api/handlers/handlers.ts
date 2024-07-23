@@ -28,6 +28,7 @@ export const handlers = [
     TrackRatingsServiceHandlers.statsControllerGetTrackLeaderBoardHandler(),
     TrackRatingsServiceHandlers.statsControllerSaveTrackPointsResultHandler(),
     TrackRatingsServiceHandlers.statsControllerSaveTrackPointsResultHandler(),
+    TrackRatingsServiceHandlers.statsControllerGetTrackPointsResultHandler(),
     
     VotesServiceHandlers.voteControllerGetCountByTrackHandler(),
     VotesServiceHandlers.voteControllerPostVoteHandler(),

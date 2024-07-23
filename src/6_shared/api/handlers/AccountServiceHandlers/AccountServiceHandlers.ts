@@ -1,9 +1,10 @@
 import { HttpResponse, http } from 'msw';
 import {AccountDtoFaker} from "../../faker/AccountDtoFaker.ts";
+import {domenURL} from "../../domen.ts";
 
 export const AccountServiceHandlers = {
-    accountControllerFindOneHandler: (id: number) => {
-        return http.get(`/account/${id}`, () => {
+    accountControllerFindOneHandler: () => {
+        return http.get(`${domenURL}/account/id`, () => {
             return HttpResponse.json(AccountDtoFaker())
         })
     }
