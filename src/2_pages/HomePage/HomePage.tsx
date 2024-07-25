@@ -26,7 +26,6 @@ export const HomePage = () => {
       ),
     placeholderData: keepPreviousData,
   });
-
   const onApplySearch = () => {
     setSearch(searchField);
     setPage(1);

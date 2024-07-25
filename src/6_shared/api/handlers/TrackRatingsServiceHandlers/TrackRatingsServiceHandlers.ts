@@ -6,25 +6,13 @@ import {domenURL} from "../../domen.ts";
 
 export const TrackRatingsServiceHandlers = {
     statsControllerGetResultsHandler: () => {
-        return http.get(`${domenURL}/stats/tracks-results-table/{trackId}`, () => {
+        return http.get(`${domenURL}/stats/tracks-results-table/:trackId`, () => {
             return HttpResponse.json(TrackRatingDtoFaker())
-        })
-    },
-    statsControllerPostResultHandler: () => {
-        return http.post(`${domenURL}/stats/tracks-results-table/{trackId}`, async ({request}) => {
-            const info = await request.formData()
-            console.log(info);
         })
     },
     statsControllerGetTrackPointsResultHandler: () => {
-        return http.get(`${domenURL}/stats/tracks-trick-points-result-table/{trackId}`, () => {
+        return http.get(`${domenURL}/stats/tracks-trick-points-result-table/:trackId`, () => {
             return HttpResponse.json(TrackRatingDtoFaker())
-        })
-    },
-    statsControllerSaveTrackPointsResultHandler: () => {
-        return http.post(`${domenURL}/stats/tracks-trick-points-result-table/{trackId}`, async ({request}) => {
-            const info = await request.formData()
-            console.log(info);
         })
     },
     statsControllerGetAllUserResultHandler: () => {
@@ -33,12 +21,12 @@ export const TrackRatingsServiceHandlers = {
         })
     },
     statsControllerGetAccountLeaderBoardHandler: () => {
-        return http.get(`${domenURL}/stats/public/account-leaderboard/{accountId}`, () => {
+        return http.get(`${domenURL}/stats/public/account-leaderboard/:accountId`, () => {
             return HttpResponse.json(PaginationLeaderBoardDtoFaker())
         })
     },
     statsControllerGetTrackLeaderBoardHandler: () => {
-        return http.get(`${domenURL}/stats/public/leaderboard/{trackId}`, () => {
+        return http.get(`${domenURL}/stats/public/leaderboard/:trackId`, () => {
             return HttpResponse.json(PaginationLeaderBoardDtoFaker())
         })
     },

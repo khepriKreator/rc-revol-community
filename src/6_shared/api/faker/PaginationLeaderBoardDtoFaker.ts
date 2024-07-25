@@ -5,5 +5,5 @@ import {PaginationLeaderBoardDto} from "../generated/game";
 
 export const PaginationLeaderBoardDtoFaker = (): PaginationLeaderBoardDto => ({
     meta: PageInfoMetaDtoFaker(),
-    items: faker.helpers.uniqueArray(() => TrackRatingDtoFaker(), faker.number.int())
+    items: faker.helpers.uniqueArray(() => TrackRatingDtoFaker(), faker.number.int({min: 1}))
 })

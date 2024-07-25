@@ -9,24 +9,9 @@ export const TrackServiceHandlers = {
             return HttpResponse.json(PaginateTrackDtoFaker())
         })
     },
-    trackControllerCreateHandler: () => {
-        return http.post(`${domenURL}/track`, async ({request}) => {
-            const info = await request.formData()
-            console.log(info);
-        })
-    },
     trackControllerFindHandler: () => {
-        return http.get(`${domenURL}/track/{publicId}`, () => {
+        return http.get(`${domenURL}/track/:publicId`, () => {
             return HttpResponse.json(TrackDtoFaker())
-        })
-    },
-    trackControllerUpdateHandler: () => {
-        http.patch(`${domenURL}/track/{publicId}`, async ({ request, params }) => {
-            const orderUpdates = await request.json()
-            console.log(
-                params,
-                orderUpdates
-            )
         })
     },
 }
