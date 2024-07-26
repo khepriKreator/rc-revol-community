@@ -5,5 +5,5 @@ import {TrackDtoFaker} from "./TrackDtoFaker.ts";
 
 export const PaginateTrackDtoFaker = (): PaginateTrackDto => ({
     meta: PageInfoMetaDtoFaker(),
-    items: faker.helpers.uniqueArray(() => TrackDtoFaker(), faker.number.int({min: 5})),
+    items: faker.helpers.uniqueArray(() => TrackDtoFaker(), faker.number.int({min: 5, max: 100})),
 })

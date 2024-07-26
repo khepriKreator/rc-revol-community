@@ -5,21 +5,21 @@ export type PaginationProps = {
   setDataPage: (currentPage: number) => void;
   totalPages: number;
 };
+const initialState = [1, 2, 3, 4, 5, 6, 7];
 
 export const CustomPagination = ({
   totalPages,
   setDataPage,
 }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const initialState = [1, 2, 3, 4, 5, 6, 7];
-  const finalState = [114, 115, 116, 117, 118, 119, 120];
+  const finalState = [(totalPages - 6), (totalPages - 5), (totalPages - 4), (totalPages - 3), (totalPages - 2), (totalPages - 1), totalPages];
   const [btnsSet, setBtnsSet] = useState(initialState);
 
   useEffect(() => {
-    if (currentPage > 4) {
+    if (currentPage <= 5) {
       setBtnsSet(initialState);
     }
-    if (currentPage > 4 && currentPage < totalPages - 4) {
+    if (currentPage > 5 && currentPage < totalPages - 4) {
       setBtnsSet([
         currentPage - 3,
         currentPage - 2,
@@ -30,7 +30,7 @@ export const CustomPagination = ({
         currentPage + 3,
       ]);
     }
-    if (totalPages > 10 && currentPage > totalPages - 5) {
+    if (totalPages >= 10 && currentPage > totalPages - 5) {
       setBtnsSet(finalState);
     }
   }, [currentPage]);
@@ -53,7 +53,7 @@ export const CustomPagination = ({
   const LongPagination = () => {
     return (
       <>
-        {currentPage > 4 && (
+        {currentPage > 5 && (
           <>
             <Pagination.Item
               onClick={() => {

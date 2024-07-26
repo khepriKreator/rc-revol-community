@@ -26,6 +26,11 @@ export const HomePage = () => {
       ),
     placeholderData: keepPreviousData,
   });
+
+  if (!data) {
+      return null;
+  }
+
   const onApplySearch = () => {
     setSearch(searchField);
     setPage(1);
@@ -44,11 +49,13 @@ export const HomePage = () => {
           <Button onClick={() => onApplySearch()}>Filter</Button>
         </InputGroup>
       </Form>
-      <GlobalLeaderBoard isLoading={isLoading} isPlaceholderData={isPlaceholderData} users={data?.items} />
-      <CustomPagination
-        setDataPage={(currentPage) => setPage(currentPage)}
-        totalPages={data?.meta.totalPages || 0}
-      />
+      <GlobalLeaderBoard isLoading={isLoading} isPlaceholderData={isPlaceholderData} users={data.items} />
+        {
+            data.meta.totalPages > 1 && <CustomPagination
+            setDataPage={(currentPage) => setPage(currentPage)}
+            totalPages={data?.meta.totalPages || 0}
+            />
+        }
     </div>
   );
 };
