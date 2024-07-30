@@ -8,6 +8,7 @@ import {
   TrackRatingsService,
   AccountService,
 } from '../../6_shared/api/generated/game';
+import {CustomPagination} from "../../6_shared/components/CustomPagination";
 import { Cell, Text } from '../../6_shared';
 import styles from './styles.module.css';
 const Q_KEY1 = 'accountControllerFindOne';
@@ -97,6 +98,12 @@ export const PlayerStat = () => {
           )}
         </tbody>
       </Table>
+      {
+          data.meta.totalPages > 1 && <CustomPagination
+              setDataPage={(currentPage) => setPage(currentPage)}
+              totalPages={data?.meta.totalPages || 0}
+          />
+      }
     </div>
   );
 };

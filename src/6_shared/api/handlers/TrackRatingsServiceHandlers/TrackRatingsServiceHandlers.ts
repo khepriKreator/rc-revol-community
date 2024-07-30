@@ -40,6 +40,10 @@ const sliceDataForPagination = <D>(url: string, data: D[], createFilterPredicate
 }
 
 const dataFaker = Array.from({length: 150}, TrackRatingDtoFaker);
+const getAccountLeaderBoard = (accountId: string) => {
+    const filteredDataFaker = dataFaker.filter(item => item.accountId === Number(accountId))
+    return filteredDataFaker;
+}
 
 export const TrackRatingsServiceHandlers = {
     statsControllerGetResultsHandler: () => {
@@ -58,8 +62,13 @@ export const TrackRatingsServiceHandlers = {
         })
     },
     statsControllerGetAccountLeaderBoardHandler: () => {
-        return http.get(`${domenURL}/stats/public/account-leaderboard/:accountId`, () => {
-            return HttpResponse.json(PaginationLeaderBoardDtoFaker())
+        return http.get(`${domenURL}/stats/public/account-leaderboard/:accountId`, ({request, params}) => {
+            const {url} = request;
+            const {accountId} = params;
+            const createFilterPredicate: CreateFilterPredicate<TrackRatingDto> = (search) => ((item) => item.accountUsername.includes(search))
+            const data = sliceDataForPagination<TrackRatingDto>(url, getAccountLeaderBoard(accountId as string), createFilterPredicate)
+            console.log(data);
+            return HttpResponse.json(data)
         })
     },
     statsControllerGetTrackLeaderBoardHandler: () => {
@@ -72,7 +81,6 @@ export const TrackRatingsServiceHandlers = {
             const {url} = request;
             const createFilterPredicate: CreateFilterPredicate<TrackRatingDto> = (search) => ((item) => item.accountUsername.includes(search))
             const data = sliceDataForPagination<TrackRatingDto>(url, dataFaker, createFilterPredicate)
-            console.log(data);
             return HttpResponse.json(data);
         })
     },

@@ -14,8 +14,16 @@ export const CustomPagination = ({
   const [currentPage, setCurrentPage] = useState(1);
   const finalState = [(totalPages - 6), (totalPages - 5), (totalPages - 4), (totalPages - 3), (totalPages - 2), (totalPages - 1), totalPages];
   const [btnsSet, setBtnsSet] = useState(initialState);
+  const [shortBtnSet, setShortBtnSet] = useState<number[]>([])
 
   useEffect(() => {
+      if (totalPages < 10) {
+          const array: number[] = [];
+          for (let i = 0; i < totalPages; i++) {
+              array.push(i + 1);
+          }
+          setShortBtnSet(array);
+      }
     if (currentPage <= 5) {
       setBtnsSet(initialState);
     }
@@ -38,18 +46,24 @@ export const CustomPagination = ({
   const onClick = (currentPage: number) => {
     setCurrentPage(currentPage);
     setDataPage(currentPage);
+    console.log(currentPage)
   };
 
-  const ShortPagination = () =>
-    Array(totalPages - 1)
-      .fill(null)
-      .map((_, index) => (
-        <>
-          <Pagination.Item key={index} onClick={() => onClick(index + 1)}>
-            {index + 1}
-          </Pagination.Item>
-        </>
-      ));
+  const ShortPagination = () => {
+      return (
+          <>
+              {
+                  shortBtnSet.map((btn, index) => (
+                      <>
+                          <Pagination.Item active={btn === currentPage} key={index} onClick={() => onClick(index + 1)}>
+                              {index + 1}
+                          </Pagination.Item>
+                      </>
+                  ))
+              }
+          </>
+      )
+  }
   const LongPagination = () => {
     return (
       <>
