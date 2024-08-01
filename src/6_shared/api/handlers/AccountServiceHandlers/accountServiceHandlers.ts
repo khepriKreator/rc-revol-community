@@ -1,13 +1,15 @@
 import {HttpResponse, http} from "msw";
-import {AccountDtoFaker} from "../../faker/AccountDtoFaker.ts";
 import {AccountDto} from "../../generated/game";
+import {accountsDB} from "../../fakerDB.ts";
+import {getAccount} from "../../heplers";
 import {domenURL} from "../../domen.ts";
-const dataFaker = AccountDtoFaker()
 export const AccountServiceHandlers = {
     accountControllerFindOneHandler: () => {
-       return http.get(`${domenURL}/account/:id`, () => {
-            const data: AccountDto = dataFaker;
-            return HttpResponse.json(data);
+       return http.get(`${domenURL}/account/:id`, ({params}) => {
+            const {id} = params;
+            const account: AccountDto = getAccount(id as string, accountsDB);
+            console.log(account)
+            return HttpResponse.json(account);
         })
     }
 }

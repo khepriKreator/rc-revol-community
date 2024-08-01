@@ -1,49 +1,12 @@
 import {HttpResponse, http} from 'msw';
 import {faker} from "@faker-js/faker";
+import type {CreateFilterPredicate} from "../../heplers";
 import {PaginationLeaderBoardDtoFaker} from "../../faker/PaginationLeaderBoardDtoFaker.ts";
+import {sliceDataForPagination, getAccountLeaderBoard} from "../../heplers";
 import {TrackRatingDtoFaker} from "../../faker/TrackRatingDtoFaker.ts";
-import {PageInfoMetaDto, TrackRatingDto} from "../../generated/game";
+import { TrackRatingDto } from "../../generated/game";
+import {trackRatingDB} from "../../fakerDB.ts";
 import {domenURL} from "../../domen.ts";
-
-type CreateFilterPredicate<D> = (search: string) => (item: D, index: number) => boolean;
-
-const sliceDataForPagination = <D>(url: string, data: D[], createFilterPredicate: CreateFilterPredicate<D>): {items: D[], meta: PageInfoMetaDto} => {
-    const urlObj = new URL(url);
-    const searchParams = new URLSearchParams(urlObj.search);
-
-    const page = Number(searchParams.get('page'));
-    const search = searchParams.get('search');
-    const itemsPerPage = Number(searchParams.get('limit'));
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const getCurrentSlice = () => {
-        if (search) {
-            const filterBySearchData = data.filter(createFilterPredicate(search));
-            return filterBySearchData.slice(startIndex, endIndex);
-        }
-        return data.slice(startIndex, endIndex)
-    };
-    const currentSlice = getCurrentSlice();
-
-    const meta: PageInfoMetaDto = {
-        totalItems: data.length,
-        totalPages: data.length / itemsPerPage,
-        currentPage: page,
-        itemCount: currentSlice.length,
-        itemsPerPage,
-    }
-
-    return {
-        meta,
-        items: currentSlice,
-    };
-}
-
-const dataFaker = Array.from({length: 150}, TrackRatingDtoFaker);
-const getAccountLeaderBoard = (accountId: string) => {
-    const filteredDataFaker = dataFaker.filter(item => item.accountId === Number(accountId))
-    return filteredDataFaker;
-}
 
 export const TrackRatingsServiceHandlers = {
     statsControllerGetResultsHandler: () => {
@@ -66,9 +29,9 @@ export const TrackRatingsServiceHandlers = {
             const {url} = request;
             const {accountId} = params;
             const createFilterPredicate: CreateFilterPredicate<TrackRatingDto> = (search) => ((item) => item.accountUsername.includes(search))
-            const data = sliceDataForPagination<TrackRatingDto>(url, getAccountLeaderBoard(accountId as string), createFilterPredicate)
+            const data = sliceDataForPagination<TrackRatingDto>(url, getAccountLeaderBoard(accountId as string, trackRatingDB), createFilterPredicate)
             console.log(data);
-            return HttpResponse.json(data)
+            return HttpResponse.json(data);
         })
     },
     statsControllerGetTrackLeaderBoardHandler: () => {
@@ -80,7 +43,7 @@ export const TrackRatingsServiceHandlers = {
         return http.get(`${domenURL}/stats/public/leaderboard`, ({request}) => {
             const {url} = request;
             const createFilterPredicate: CreateFilterPredicate<TrackRatingDto> = (search) => ((item) => item.accountUsername.includes(search))
-            const data = sliceDataForPagination<TrackRatingDto>(url, dataFaker, createFilterPredicate)
+            const data = sliceDataForPagination<TrackRatingDto>(url, trackRatingDB, createFilterPredicate)
             return HttpResponse.json(data);
         })
     },

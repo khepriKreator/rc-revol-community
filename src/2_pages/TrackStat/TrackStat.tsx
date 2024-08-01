@@ -1,8 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Skeleton from 'react-loading-skeleton';
-import Button from 'react-bootstrap/Button';
 import { InputGroup } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import { format } from 'date-fns';
@@ -11,6 +11,7 @@ import {
   TrackRatingsService,
   TracksService,
 } from '../../6_shared/api/generated/game';
+import {CustomPagination} from "../../6_shared/components/CustomPagination";
 import { Cell, Text } from '../../6_shared';
 import styles from './styles.module.css';
 
@@ -110,6 +111,12 @@ export const TrackStat = () => {
           )}
         </tbody>
       </Table>
+      {
+          trackStat.meta.totalPages > 1 && <CustomPagination
+              setDataPage={(currentPage) => setPage(currentPage)}
+              totalPages={trackStat?.meta.totalPages || 0}
+          />
+      }
     </div>
   );
 };

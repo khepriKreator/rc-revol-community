@@ -1,5 +1,5 @@
+import {keepPreviousData, useQuery} from '@tanstack/react-query';
 import { useParams, Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import Skeleton from 'react-loading-skeleton';
 import Table from 'react-bootstrap/Table';
 import { format } from 'date-fns';
@@ -29,6 +29,7 @@ export const PlayerStat = () => {
         10,
         false,
       ),
+    placeholderData: keepPreviousData,
   });
   if (!data) {
     return null;
