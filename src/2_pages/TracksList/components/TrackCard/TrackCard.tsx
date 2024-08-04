@@ -16,12 +16,12 @@ export const TrackCard = ({ trackInfo, onClick }: TrackCardProps) => {
   if (!trackInfo) {
     return null;
   }
-  const { title, tags, publicId } = trackInfo;
+  const { title, tags, publicId, preview } = trackInfo;
 
   return (
     <div className={styles.card}>
       <Stack direction={'vertical'}>
-        <Image src={''} />
+        <Image src={preview?.s3Location} />
         <div className={styles.description}>
           <Cell
             primaryText={
