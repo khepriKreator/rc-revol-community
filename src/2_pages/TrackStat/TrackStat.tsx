@@ -25,7 +25,7 @@ export const TrackStat = () => {
   const [searchField, setSearchField] = useState('');
   // КВЕРИКИ
   const { data: trackStat } = useQuery({
-    queryKey: [Q_KEY1, search, page],
+    queryKey: [Q_KEY1, search, page, trackId],
     queryFn: () =>
       TrackRatingsService.statsControllerGetTrackLeaderBoard(
         `${trackId}`,

@@ -30,7 +30,6 @@ export const TrackRatingsServiceHandlers = {
             const {accountId} = params;
             const createFilterPredicate: CreateFilterPredicate<TrackRatingDto> = (search) => ((item) => item.accountUsername.includes(search))
             const data = sliceDataForPagination<TrackRatingDto>(url, getAccountLeaderBoard(accountId as string, trackRatingDB), createFilterPredicate)
-            console.log(data);
             return HttpResponse.json(data);
         })
     },
@@ -40,8 +39,7 @@ export const TrackRatingsServiceHandlers = {
             const {trackId} = params;
             const createFilterPredicate: CreateFilterPredicate<TrackRatingDto> = (search) => ((item) => item.accountUsername.includes(search))
             const data = sliceDataForPagination<TrackRatingDto>(url, getTrackLeaderBoard(trackId as string, trackRatingDB), createFilterPredicate)
-            console.log(data);
-            return HttpResponse.json(data)
+            return HttpResponse.json(data);
         })
     },
     statsControllerGetGlobalLeaderBoardHandler: () => {
