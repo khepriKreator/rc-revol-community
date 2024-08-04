@@ -1,6 +1,5 @@
 import {HttpResponse, http} from 'msw';
 import {sliceDataForPagination, CreateFilterPredicate} from "../../heplers";
-import {TrackDtoFaker} from "../../faker/TrackDtoFaker.ts";
 import {TrackDto} from "../../generated/game";
 import {trackListDB} from "../../fakerDB.ts";
 import {domenURL} from "../../domen.ts";
@@ -18,8 +17,10 @@ export const TrackServiceHandlers = {
         })
     },
     trackControllerFindHandler: () => {
-        return http.get(`${domenURL}/track/:publicId`, () => {
-            return HttpResponse.json(TrackDtoFaker())
+        return http.get(`${domenURL}/track/:publicId`, ({params}) => {
+            const {publicId} = params;
+            const trackData = trackListDB.find((track) => track.publicId === publicId as string)
+            return HttpResponse.json(trackData)
         })
     },
 }

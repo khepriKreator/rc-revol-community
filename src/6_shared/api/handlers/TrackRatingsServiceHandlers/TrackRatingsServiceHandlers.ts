@@ -1,8 +1,8 @@
 import {HttpResponse, http} from 'msw';
 import {faker} from "@faker-js/faker";
 import type {CreateFilterPredicate} from "../../heplers";
-import {PaginationLeaderBoardDtoFaker} from "../../faker/PaginationLeaderBoardDtoFaker.ts";
 import {sliceDataForPagination, getAccountLeaderBoard} from "../../heplers";
+import {getTrackLeaderBoard} from "../../heplers/getTrackLeaderBoard.ts";
 import {TrackRatingDtoFaker} from "../../faker/TrackRatingDtoFaker.ts";
 import { TrackRatingDto } from "../../generated/game";
 import {trackRatingDB} from "../../fakerDB.ts";
@@ -35,8 +35,13 @@ export const TrackRatingsServiceHandlers = {
         })
     },
     statsControllerGetTrackLeaderBoardHandler: () => {
-        return http.get(`${domenURL}/stats/public/leaderboard/:trackId`, () => {
-            return HttpResponse.json(PaginationLeaderBoardDtoFaker())
+        return http.get(`${domenURL}/stats/public/leaderboard/:trackId`, ({request, params}) => {
+            const {url} = request;
+            const {trackId} = params;
+            const createFilterPredicate: CreateFilterPredicate<TrackRatingDto> = (search) => ((item) => item.accountUsername.includes(search))
+            const data = sliceDataForPagination<TrackRatingDto>(url, getTrackLeaderBoard(trackId as string, trackRatingDB), createFilterPredicate)
+            console.log(data);
+            return HttpResponse.json(data)
         })
     },
     statsControllerGetGlobalLeaderBoardHandler: () => {
