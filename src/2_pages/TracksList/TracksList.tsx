@@ -42,7 +42,7 @@ export const TracksList = () => {
     queryFn: () =>
       TracksService.trackControllerPaginate(
         page,
-        9,
+        8,
         null,
         null,
         null,

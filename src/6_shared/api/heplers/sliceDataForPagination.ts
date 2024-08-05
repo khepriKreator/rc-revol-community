@@ -16,16 +16,21 @@ export const sliceDataForPagination = <D>(url: string, data: D[], createFilterPr
         if (search || filterByTags) {
             const params = search ?? filterByTags;
             const filterData = data.filter(createFilterPredicate(params));
-            console.log(filterData)
-            return filterData.slice(startIndex, endIndex);
+            return {
+                slice: filterData.slice(startIndex, endIndex),
+                filterData
+            };
         }
-        return data.slice(startIndex, endIndex)
+        return {
+            slice: data.slice(startIndex, endIndex)
+        };
     };
-    const currentSlice = getCurrentSlice();
+    const currentSlice = getCurrentSlice().slice;
+    const filteredTotalPages = getCurrentSlice().filterData?.length;
 
     const meta: PageInfoMetaDto = {
         totalItems: data.length,
-        totalPages: Math.ceil(data.length / itemsPerPage),
+        totalPages: Math.ceil((filteredTotalPages ?? data.length) / itemsPerPage),
         currentPage: page,
         itemCount: currentSlice.length,
         itemsPerPage,
